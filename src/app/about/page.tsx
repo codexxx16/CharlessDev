@@ -301,7 +301,7 @@ export default function About() {
               >
                 {about.technical.title}
               </Heading>
-              <Column fillWidth gap="l">
+              <Column fillWidth gap="l" marginBottom="40">
                 {about.technical.skills.map((skill, index) => (
                   <Column key={`${skill}-${index}`} fillWidth gap="4">
                     <Text variant="heading-strong-l">{skill.title}</Text>
@@ -339,6 +339,26 @@ export default function About() {
               </Column>
             </>
           )}
+
+          {/* Languages Section */}
+          <Heading as="h2" variant="display-strong-s" marginBottom="m">
+            Languages
+          </Heading>
+          <Flex fillWidth gap="m" wrap marginBottom="40">
+            {['English', 'Shona', 'Ndebele'].map((language, index) => (
+              <Flex
+                key={index}
+                fillWidth
+                padding="m"
+                border="neutral-medium"
+                radius="m"
+                direction="column"
+                gap="8"
+              >
+                <Text variant="heading-strong-m">{language}</Text>
+              </Flex>
+            ))}
+          </Flex>
         </Column>
       </Flex>
     </Column>
