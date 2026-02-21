@@ -1,5 +1,8 @@
+"use client";
+
 import { Flex, IconButton, SmartLink, Text } from "@/once-ui/components";
 import { person, social } from "@/app/resources/content";
+import { LanguageSelector } from "./LanguageSelector";
 import styles from "./Footer.module.scss";
 
 export const Footer = () => {
@@ -37,7 +40,8 @@ export const Footer = () => {
             </SmartLink>
           </Text>
         </Text>
-        <Flex gap="16">
+        <Flex gap="16" vertical="center">
+          <LanguageSelector />
           {social.map(
             (item) =>
               item.link && (

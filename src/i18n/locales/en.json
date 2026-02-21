@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "uses": "Uses",
+    "questbook": "Questbook"
+  },
+  "hero": {
+    "headline": "Charless Netumbare | Full-Stack Developer & Tech Explorer",
+    "subline": "Building secure fintech solutions, exploring robotics, and bridging the gap between physical discipline and digital innovation. Based in Harare, Africa."
+  },
+  "about": {
+    "title": "About Me",
+    "intro": "I'm a 21-year-old full-stack developer and basketball player (1.9m) from Harare, Africa. I believe in consistency, rapid learning, and pushing boundaries—whether it's optimizing a full-stack system or running a 10km.",
+    "workExperience": "Work Experience & Projects",
+    "academicFoundation": "Academic Foundation",
+    "technicalSkills": "Technical Skills"
+  },
+  "projects": {
+    "title": "Projects",
+    "viewProject": "View Project",
+    "technologies": "Technologies"
+  },
+  "uses": {
+    "title": "Tools & Tech I Use",
+    "devices": "Hardware & Devices",
+    "software": "Software & Tools",
+    "byNumbers": "By The Numbers",
+    "placesVisited": "Places Visited"
+  },
+  "questbook": {
+    "title": "Leave a Quote",
+    "description": "Share your thoughts and leave a quote for me",
+    "yourName": "Your Name",
+    "yourEmail": "Your Email",
+    "yourQuote": "Your Quote or Message",
+    "sendQuote": "Send Quote",
+    "thankYou": "Thank you! Your quote has been sent. I'll get back to you soon.",
+    "otherWays": "Other Ways to Connect"
+  },
+  "common": {
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "twitter": "Twitter",
+    "location": "Harare, Africa",
+    "role": "Full-Stack Developer & Tech Explorer"
+  }
+}

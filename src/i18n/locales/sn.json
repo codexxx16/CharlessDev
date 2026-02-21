@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "home": "Mwanzo",
+    "about": "Nezve Mwene",
+    "projects": "Mabasa",
+    "uses": "Zvinhu Zvandinoshanda Nazvo",
+    "questbook": "Nhau Dzangu"
+  },
+  "hero": {
+    "headline": "Charless Netumbare | Muenzanisi WeFull-Stack Uye Mucheki weTechnology",
+    "subline": "Ndiri kuita zvinhu zvakakosheswa zveFintec, ndichicheka robotics, uye ndichikwanisa kuunganidza simba renyama nezvakasarudzika zvedigital. Ndiri muHarare, Africa."
+  },
+  "about": {
+    "title": "Nezve Mwene",
+    "intro": "Ndini muenzanisi weFull-Stack ane makore 21 uye munhu weBaskeball (1.9m) anobva muHarare, Africa. Ndinotenda kushanda zvakakwana, kudzidza zvakakurumidza, uye kuisa simba—kana zvichiri kuita zvinhu zveFull-stack kana kumidzana 10km.",
+    "workExperience": "Mabasa neMaproject",
+    "academicFoundation": "Nzira Dzesomho",
+    "technicalSkills": "Hunhu Hweteknoloji"
+  },
+  "projects": {
+    "title": "Mabasa",
+    "viewProject": "Ona Mabasa",
+    "technologies": "Tekinoloji"
+  },
+  "uses": {
+    "title": "Zvinhu Zvandinoshanda Nazvo",
+    "devices": "Mhando dzeMachines",
+    "software": "Software neZvinhu",
+    "byNumbers": "Nenzira dzeNumerals",
+    "placesVisited": "Nzvimbo Dzandakavakashura"
+  },
+  "questbook": {
+    "title": "Siya Nhau",
+    "description": "Rangarira pfungwa dzako uye siya nhau kune mwene",
+    "yourName": "Zita Rako",
+    "yourEmail": "Email Yako",
+    "yourQuote": "Nhau Yako Kana Utsanye",
+    "sendQuote": "Tumira Nhau",
+    "thankYou": "Waita zvakanaka! Nhau yako yakatumirwa. Ndichakubvunzaira gore.",
+    "otherWays": "Dzimwe Nzira Dzekubatanidza"
+  },
+  "common": {
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "twitter": "Twitter",
+    "location": "Harare, Africa",
+    "role": "Muenzanisi weFull-Stack Uye Mucheki weTechnology"
+  }
+}

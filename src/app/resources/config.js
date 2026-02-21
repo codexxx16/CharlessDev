@@ -1,24 +1,26 @@
-const baseURL = "demo.magic-portfolio.com";
+const baseURL = "charlessdev.com";
 
 const routes = {
   "/": true,
   "/about": true,
   "/work": true,
-  "/blog": true,
-  "/gallery": true,
+  "/blog": false,
+  "/gallery": false,
+  "/uses": true,
+  "/questbook": true,
 };
 
 // Enable password protection on selected routes
 // Set password in pages/api/authenticate.ts
 const protectedRoutes = {
-  "/work/automate-design-handovers-with-a-figma-to-code-pipeline": true,
+  // "/work/automate-design-handovers-with-a-figma-to-code-pipeline": true,
 };
 
 const style = {
   theme: "dark", // dark | light
   neutral: "gray", // sand | gray | slate
-  brand: "emerald", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
-  accent: "orange", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
+  brand: "blue", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
+  accent: "cyan", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
   solid: "contrast", // color | contrast
   solidStyle: "flat", // flat | plastic
   border: "playful", // rounded | playful | conservative

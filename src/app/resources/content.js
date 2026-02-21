@@ -1,24 +1,24 @@
 import { InlineCode } from "@/once-ui/components";
 
 const person = {
-  firstName: "Selene",
-  lastName: "Yu",
+  firstName: "Charless",
+  lastName: "Netumbare",
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Design Engineer",
+  role: "Full-Stack Developer & Tech Explorer",
   avatar: "/images/avatar.jpg",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  location: "Africa/Harare", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  languages: ["Shona", "English"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter = {
-  display: true,
+  display: false,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
   description: (
     <>
-      I occasionally write about design, technology, and share thoughts on the intersection of
-      creativity and engineering.
+      I occasionally write about development, technology, and share thoughts on the intersection of
+      fintech, robotics, and digital innovation.
     </>
   ),
 };
@@ -29,34 +29,34 @@ const social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system/nextjs-starter",
+    link: "https://github.com/codexxx16/",
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
+    link: "https://www.linkedin.com/in/charless-dev/",
   },
   {
     name: "X",
     icon: "x",
-    link: "",
+    link: "https://x.com/CharlessDev",
   },
   {
     name: "Email",
     icon: "email",
-    link: "mailto:example@gmail.com",
+    link: "mailto:codexxx@gmail.com",
   },
 ];
 
 const home = {
   label: "Home",
-  title: `${person.name}'s Portfolio`,
+  title: `${person.name} | Full-Stack Developer & Tech Explorer`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Design engineer and builder</>,
+  headline: <>Charless Netumbare | Full-Stack Developer & Tech Explorer</>,
   subline: (
     <>
-      I'm Selene, a design engineer at <InlineCode>FLY</InlineCode>, where I craft intuitive
-      <br /> user experiences. After hours, I build my own projects.
+      Building secure fintech solutions, exploring robotics, and bridging the gap between physical
+      <br /> discipline and digital innovation. Based in Harare, Africa.
     </>
   ),
 };
@@ -73,7 +73,7 @@ const about = {
     display: true,
   },
   calendar: {
-    display: true,
+    display: false,
     link: "https://cal.com",
   },
   intro: {
@@ -81,52 +81,52 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        I'm a 21-year-old full-stack developer and basketball player (1.9m) from Harare, Africa. I believe in
+        consistency, rapid learning, and pushing boundaries—whether it's optimizing a full-stack system or running a 10km.
+        My philosophy centers on discipline and continuous growth in both technology and athletics.
       </>
     ),
   },
   work: {
     display: true, // set to false to hide this section
-    title: "Work Experience",
+    title: "Work Experience & Projects",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "AI-Driven Fintech Ecosystem",
+        timeframe: "2024 - Present",
+        role: "Lead Developer",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Engineered a secure automated signal delivery system for financial markets using LLM + Visual Analysis
+            for candlestick pattern recognition.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Implemented multi-platform OAuth authentication with strict logging and PayPal webhook integration for
+            license generation and recovery bonuses.
+          </>,
+          <>
+            Developed Telegram Bot with automated signal delivery, license validation, and cron job scheduling for
+            24/7 market monitoring.
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "Freelance Development",
+        timeframe: "2023 - Present",
+        role: "Full-Stack Developer",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Delivered 15+ client projects including Auto-Trader, X-Trader Coral, ZimFlix, and Masvingo TechHub,
+            specializing in fintech, e-commerce, and community platforms.
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Developed School Records Management System (.exe) with licensing capabilities, generating recurring revenue
+            from educational institutions.
+          </>,
+          <>
+            Built ZimConnect (evolved from ChatRoom), a community platform, and ZimBlog, a client news aggregation
+            system with modern UI/UX.
           </>,
         ],
         images: [],
@@ -135,53 +135,62 @@ const about = {
   },
   studies: {
     display: true, // set to false to hide this section
-    title: "Studies",
+    title: "Academic Foundation",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "O-Level Education",
+        description: (
+          <>
+            6 O-Level passes including Shona (A), English (B), Agriculture (B), and Sciences. Currently resitting
+            Mathematics to align with technical expertise. I hold a strong commitment to continuous learning and
+            practical skill development.
+          </>
+        ),
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "IBM Online Courses",
+        description: (
+          <>
+            Completed IBM online learning programs focusing on cloud computing, data science, and enterprise
+            development. Gained practical experience beyond formal certification.
+          </>
+        ),
       },
     ],
   },
   technical: {
     display: true, // set to false to hide this section
-    title: "Technical skills",
+    title: "Technical Skills",
     skills: [
       {
-        title: "Figma",
-        description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Full-Stack Development",
+        description: (
+          <>
+            Expert in Next.js, React, TypeScript, Framer Motion, Kotlin, Python, HTML, CSS, and Java. Building
+            responsive, performant applications with modern frameworks.
+          </>
+        ),
+        images: [],
       },
       {
-        title: "Next.js",
-        description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Specializations",
+        description: (
+          <>
+            Cybersecurity, API Integration, Server Management, OAuth authentication, and database optimization. Strong
+            focus on secure fintech solutions.
+          </>
+        ),
+        images: [],
+      },
+      {
+        title: "Emerging Technologies",
+        description: (
+          <>
+            Robotics, AI/LLM integration, Visual Chart Recognition, Game Development (C#, Unity, Godot). Actively
+            exploring cutting-edge technologies.
+          </>
+        ),
+        images: [],
       },
     ],
   },
@@ -189,17 +198,17 @@ const about = {
 
 const blog = {
   label: "Blog",
-  title: "Writing about design and tech...",
+  title: "Writing about development and tech...",
   description: `Read what ${person.name} has been up to recently`,
   // Create new blog posts by adding a new .mdx file to app/blog/posts
   // All posts will be listed on the /blog route
 };
 
 const work = {
-  label: "Work",
+  label: "Projects",
   title: "My projects",
   description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
+  // Create new project pages by adding a new .mdx file to app/work/projects
   // All projects will be listed on the /home and /work routes
 };
 
@@ -208,78 +217,62 @@ const gallery = {
   title: "My photo gallery",
   description: `A photo collection by ${person.name}`,
   // Images from https://pexels.com
-  images: [
+  images: [],
+};
+
+const uses = {
+  label: "Uses",
+  title: "Tools & Tech I Use",
+  description: `The devices, software, and tools I use daily`,
+  devices: [
     {
-      src: "/images/gallery/img-01.jpg",
-      alt: "image",
-      orientation: "vertical",
+      name: "iPhone 12 Pro Max",
+      specs: "256GB, White",
+      icon: "📱",
     },
     {
-      src: "/images/gallery/img-02.jpg",
-      alt: "image",
-      orientation: "horizontal",
+      name: "MacBook Air M1",
+      specs: "13-inch",
+      icon: "💻",
     },
     {
-      src: "/images/gallery/img-03.jpg",
-      alt: "image",
-      orientation: "vertical",
+      name: "AirPods 3",
+      specs: "Wireless",
+      icon: "🎧",
     },
     {
-      src: "/images/gallery/img-04.jpg",
-      alt: "image",
-      orientation: "horizontal",
+      name: "Starlink Mini Kit",
+      specs: "Portable internet",
+      icon: "🛰️",
     },
     {
-      src: "/images/gallery/img-05.jpg",
-      alt: "image",
-      orientation: "horizontal",
+      name: "Liquid Zw Backup",
+      specs: "Local storage",
+      icon: "💾",
+    },
+  ],
+  software: [
+    {
+      category: "Development",
+      tools: ["VSCode", "XCode", "OrbStack", "CloudFlare", "Ghosty"],
     },
     {
-      src: "/images/gallery/img-06.jpg",
-      alt: "image",
-      orientation: "vertical",
+      category: "Design & Productivity",
+      tools: ["Figma", "1Password", "Arc Browser", "CleanShot", "Discord"],
     },
     {
-      src: "/images/gallery/img-07.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/img-08.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/img-09.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/img-10.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/img-11.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/img-12.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/img-13.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/img-14.jpg",
-      alt: "image",
-      orientation: "horizontal",
+      category: "Entertainment",
+      tools: ["Spotify", "Netflix", "ChatGPT", "Inna", "Ice"],
     },
   ],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+const questbook = {
+  label: "Questbook",
+  title: "Leave a Quote",
+  description: "Share your thoughts and leave a quote for me",
+  email: "codexxxnull@gmail.com",
+  tagline: "Independent one-man freelance team. Affordable. T&Cs apply.",
+};
+
+export { person, social, newsletter, home, about, blog, work, gallery, uses, questbook };

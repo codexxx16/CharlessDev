@@ -5,6 +5,7 @@ import classNames from "classnames";
 
 import { Footer, Header, RouteGuard } from "@/components";
 import { baseURL, effects, style } from "@/app/resources";
+import { I18nProvider } from "@/i18n/i18nContext";
 
 import { Inter } from "next/font/google";
 import { Source_Code_Pro } from "next/font/google";
@@ -91,7 +92,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       )}
     >
       <ToastProvider>
-        <Column style={{ minHeight: "100vh" }} as="body" fillWidth margin="0" padding="0">
+        <I18nProvider>
+          <Column style={{ minHeight: "100vh" }} as="body" fillWidth margin="0" padding="0">
           <Background
             mask={{
               cursor: effects.mask.cursor,
@@ -156,6 +158,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           </Flex>
           <Footer />
         </Column>
+        </I18nProvider>
       </ToastProvider>
     </Flex>
   );

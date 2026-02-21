@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "home": "Esikhangeni",
+    "about": "Mayelana Nami",
+    "projects": "Imisebenzi",
+    "uses": "Izinto Engizihlela",
+    "questbook": "Incwadi Yami Yemibono"
+  },
+  "hero": {
+    "headline": "Charless Netumbare | Umuntu Oqeqeshwe Ekusebenziseni Ikhompiyutha Nokufunda Izinto Ezintsha",
+    "subline": "Ngenza izinto eziphakamileyo zeFintec, ngifunda i-robotics, nokuxhuma amandla omzimba nomqondo wobuchwepheshe. Ngihlala eHarare, Africa."
+  },
+  "about": {
+    "title": "Mayelana Nami",
+    "intro": "Ngingumuntu oneminyaka 24 oqeqeshwe ekusebenziseni ikhompiyutha ngokuphelele futhi ngingumuntu obheke ibhola (1.9m) ovela eHarare, Africa. Ngikhuluma ngokusebenza kahle, ukufunda ngokushesha, nokukwenza umsebenzi omuhle.",
+    "workExperience": "Umsebenzi Nomsebenzi Wemisebenzi",
+    "academicFoundation": "Isisekelo Somfundo",
+    "technicalSkills": "Ikhono Lobuchwepheshe"
+  },
+  "projects": {
+    "title": "Imisebenzi",
+    "viewProject": "Buka Umsebenzi",
+    "technologies": "Ubuchwepheshe"
+  },
+  "uses": {
+    "title": "Izinto Engizihlela",
+    "devices": "Izinhlelo Zomsebenzi",
+    "software": "Izinhlelo Zomsebenzi Nezinto",
+    "byNumbers": "Ngenombolo",
+    "placesVisited": "Izindawo Engizihlele"
+  },
+  "questbook": {
+    "title": "Shiya Umcabango",
+    "description": "Cabanga ngezinto zakho ushiye umcabango kimi",
+    "yourName": "Igama Lakho",
+    "yourEmail": "I-imeyili Yakho",
+    "yourQuote": "Umcabango Wakho Noma Utsanye",
+    "sendQuote": "Thumela Umcabango",
+    "thankYou": "Ngiyabonga! Umcabango wakho wathumelwe. Ngizokubuyela emva.",
+    "otherWays": "Ezinye Izindlela Zokuxhumana"
+  },
+  "common": {
+    "email": "I-imeyili",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "twitter": "Twitter",
+    "location": "Harare, Africa",
+    "role": "Umuntu Oqeqeshwe Ekusebenziseni Ikhompiyutha Nokufunda Izinto Ezintsha"
+  }
+}
