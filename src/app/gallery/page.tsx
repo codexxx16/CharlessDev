@@ -1,4 +1,4 @@
-import { Flex } from "@/once-ui/components";
+import { Flex, Text, Heading, Card } from "@/once-ui/components";
 import MasonryGrid from "@/components/gallery/MasonryGrid";
 import { baseURL } from "@/app/resources";
 import { gallery, person } from "@/app/resources/content";
@@ -45,11 +45,11 @@ export default function Gallery() {
             name: gallery.title,
             description: gallery.description,
             url: `https://${baseURL}/gallery`,
-            image: gallery.images.map((image) => ({
+            image: gallery.images.length > 0 ? gallery.images.map((image: any) => ({
               "@type": "ImageObject",
-              url: `${baseURL}${image.src}`,
-              description: image.alt,
-            })),
+              url: `${baseURL}${image.src || image}`,
+              description: image.alt || "",
+            })) : [],
             author: {
               "@type": "Person",
               name: person.name,

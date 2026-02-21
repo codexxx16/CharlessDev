@@ -71,7 +71,13 @@ export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children
 export const useI18n = (): I18nContextType => {
   const context = useContext(I18nContext);
   if (!context) {
-    throw new Error("useI18n must be used within I18nProvider");
+    // Return default context for server-side rendering
+    return {
+      language: "en",
+      setLanguage: () => {},
+      t: (key: string) => key,
+      translations: translations.en,
+    };
   }
   return context;
 };

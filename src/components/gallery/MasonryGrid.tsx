@@ -13,13 +13,17 @@ export default function MasonryGrid() {
     560: 1,
   };
 
+  if (gallery.images.length === 0) {
+    return null;
+  }
+
   return (
     <Masonry
       breakpointCols={breakpointColumnsObj}
       className={styles.masonryGrid}
       columnClassName={styles.masonryGridColumn}
     >
-      {gallery.images.map((image, index) => (
+      {gallery.images.map((image: any, index: number) => (
         <SmartImage
           priority={index < 10}
           sizes="(max-width: 560px) 100vw, (max-width: 1024px) 50vw, (max-width: 1440px) 33vw, 25vw"

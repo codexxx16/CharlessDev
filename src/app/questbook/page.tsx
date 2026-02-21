@@ -1,9 +1,7 @@
-"use client";
-
-import { Column, Flex, Heading, Text, Button, Input, Textarea, Card } from "@/once-ui/components";
+import { Column, Flex, Heading, Text, Card } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { questbook } from "@/app/resources/content";
-import { useState } from "react";
+import { QuestbookForm } from "@/components/QuestbookForm";
 
 export async function generateMetadata() {
   const title = questbook.title;
@@ -35,33 +33,6 @@ export async function generateMetadata() {
 }
 
 export default function Questbook() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [quote, setQuote] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Create mailto link with form data
-    const subject = encodeURIComponent(`New Quote from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nQuote:\n${quote}`
-    );
-
-    // Open email client
-    window.location.href = `mailto:${questbook.email}?subject=${subject}&body=${body}`;
-
-    // Reset form
-    setName("");
-    setEmail("");
-    setQuote("");
-    setSubmitted(true);
-
-    // Hide success message after 3 seconds
-    setTimeout(() => setSubmitted(false), 3000);
-  };
-
   return (
     <Column maxWidth="m" gap="xl" horizontal="center">
       <script
@@ -99,67 +70,7 @@ export default function Questbook() {
       </Card>
 
       {/* Quote Form */}
-      <form onSubmit={handleSubmit} style={{ width: "100%" }}>
-        <Column fillWidth gap="m">
-          {/* Name Input */}
-          <Column fillWidth gap="8">
-            <Text variant="body-default-s" onBackground="neutral-weak">
-              Your Name
-            </Text>
-            <Input
-              id="name"
-              placeholder="Enter your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </Column>
-
-          {/* Email Input */}
-          <Column fillWidth gap="8">
-            <Text variant="body-default-s" onBackground="neutral-weak">
-              Your Email
-            </Text>
-            <Input
-              id="email"
-              type="email"
-              placeholder="your@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </Column>
-
-          {/* Quote Textarea */}
-          <Column fillWidth gap="8">
-            <Text variant="body-default-s" onBackground="neutral-weak">
-              Your Quote or Message
-            </Text>
-            <Textarea
-              id="quote"
-              placeholder="Share your thoughts, quote, or feedback..."
-              value={quote}
-              onChange={(e) => setQuote(e.target.value)}
-              required
-              rows={6}
-            />
-          </Column>
-
-          {/* Submit Button */}
-          <Button type="submit" variant="primary" size="m" fillWidth>
-            Send Quote
-          </Button>
-        </Column>
-      </form>
-
-      {/* Success Message */}
-      {submitted && (
-        <Card fillWidth padding="m" border="accent-medium" background="accent-alpha-weak">
-          <Text variant="body-default-m" onBackground="accent-weak">
-            Thank you! Your quote has been sent. I'll get back to you soon.
-          </Text>
-        </Card>
-      )}
+      <QuestbookForm />
 
       {/* Contact Info */}
       <Card fillWidth padding="l" border="neutral-medium">

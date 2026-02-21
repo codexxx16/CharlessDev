@@ -1,9 +1,7 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import { Column, Flex, Heading, Text, Card, Badge } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { uses } from "@/app/resources/content";
+import { Counter } from "@/components/Counter";
 
 export async function generateMetadata() {
   const title = uses.title;
@@ -33,45 +31,6 @@ export async function generateMetadata() {
     },
   };
 }
-
-interface CounterProps {
-  label: string;
-  value: number;
-}
-
-const Counter: React.FC<CounterProps> = ({ label, value }) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let start = 0;
-    const end = value;
-    const duration = 2000;
-    const increment = end / (duration / 16);
-
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= end) {
-        setCount(end);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-
-    return () => clearInterval(timer);
-  }, [value]);
-
-  return (
-    <Card fillWidth padding="m" border="neutral-medium">
-      <Flex direction="column" gap="8" horizontal="center" vertical="center">
-        <Text variant="display-strong-m">{count.toLocaleString()}</Text>
-        <Text variant="body-default-s" onBackground="neutral-weak">
-          {label}
-        </Text>
-      </Flex>
-    </Card>
-  );
-};
 
 export default function Uses() {
   return (
@@ -107,9 +66,9 @@ export default function Uses() {
             <Card
               key={index}
               flex={1}
-              minWidth="200"
               padding="m"
               border="neutral-medium"
+              style={{ minWidth: "200px" }}
             >
               <Flex direction="column" gap="8">
                 <Text variant="heading-strong-m">{device.name}</Text>
@@ -132,7 +91,7 @@ export default function Uses() {
             <Text variant="heading-strong-m">{category.category}</Text>
             <Flex fillWidth gap="m" wrap>
               {category.tools.map((tool, toolIndex) => (
-                <Badge key={toolIndex} size="l">
+                <Badge key={toolIndex}>
                   {tool}
                 </Badge>
               ))}
