@@ -9,7 +9,7 @@ const person = {
   role: "Full-Stack Developer & Tech Explorer",
   avatar: "/images/avatar.jpg",
   location: "Africa/Harare", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["Shona", "English"], // optional: Leave the array empty if you don't want to display languages
+  languages: ["Shona", "English", "Ndebele"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter = {
@@ -228,12 +228,12 @@ const uses = {
     {
       name: "iPhone 12 Pro Max",
       specs: "256GB, White",
-      icon: "📱",
+      image: "/images/uses/iphone-12-pro.png",
     },
     {
       name: "MacBook Air M1",
       specs: "13-inch",
-      icon: "💻",
+      image: "/images/uses/macbook-air.png",
     },
     {
       name: "AirPods 3",
@@ -243,27 +243,57 @@ const uses = {
     {
       name: "Starlink Mini Kit",
       specs: "Portable internet",
-      icon: "🛰️",
+      image: "/images/uses/starlink.png",
     },
     {
-      name: "Liquid Zw Backup",
-      specs: "Local storage",
-      icon: "💾",
+      name: "Liquid Home Backup",
+      specs: "Backup internet plan",
+      image: "/images/uses/liquid-home.png",
     },
   ],
   software: [
     {
       category: "Development",
-      tools: ["VSCode", "XCode", "OrbStack", "CloudFlare", "Ghosty"],
+      tools: [
+        { name: "VSCode", icon: "/images/uses/vscode.png" },
+        { name: "XCode", icon: "/images/uses/xcode.png" },
+        { name: "OrbStack", icon: "/images/uses/orbstack.png" },
+        { name: "CloudFlare", icon: "/images/uses/cloudflare.png" },
+        { name: "Ghosty", icon: "/images/uses/ghosty.png" },
+      ],
     },
     {
       category: "Design & Productivity",
-      tools: ["Figma", "1Password", "Arc Browser", "CleanShot", "Discord"],
+      tools: [
+        { name: "Figma", icon: "/images/uses/figma.png" },
+        { name: "1Password", icon: "/images/uses/1password.png" },
+        { name: "Arc Browser", icon: "/images/uses/arc.png" },
+        { name: "CleanShot", icon: "/images/uses/cleanshot.png" },
+        { name: "Discord", icon: "/images/uses/discord.png" },
+      ],
     },
     {
-      category: "Entertainment",
-      tools: ["Spotify", "Netflix", "ChatGPT", "Inna", "Ice"],
+      category: "Entertainment & Others",
+      tools: [
+        { name: "Spotify", icon: "/images/uses/spotify.png" },
+        { name: "Netflix", icon: "/images/uses/netflix.png" },
+        { name: "ChatGPT", icon: "/images/uses/chatgpt.png" },
+        { name: "IINA", icon: "/images/uses/iina.png" },
+        { name: "Ice", icon: "/images/uses/ice.png" },
+      ],
     },
+  ],
+  activities: [
+    { label: "Hours Coding", value: 6264 },
+    { label: "Hours Gaming/Month", value: 34 },
+    { label: "Hours Spotify", value: 1257 },
+    { label: "Hours Netflix", value: 300 },
+    { label: "YouTube Subs", value: 0 },
+    { label: "YouTube Views", value: 0 },
+    { label: "GitHub Followers", value: 0 },
+    { label: "GitHub Projects", value: 18 },
+    { label: "Blog Views", value: 0 },
+    { label: "Blog Likes", value: 0 },
   ],
 };
 
