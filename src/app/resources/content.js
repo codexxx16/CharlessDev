@@ -238,7 +238,7 @@ const uses = {
     {
       name: "AirPods 3",
       specs: "Wireless",
-      icon: "🎧",
+      image: "/images/uses/airpods-3.png",
     },
     {
       name: "Starlink Mini Kit",
@@ -284,16 +284,16 @@ const uses = {
     },
   ],
   activities: [
-    { label: "Hours Coding", value: 6264 },
-    { label: "Hours Gaming/Month", value: 34 },
-    { label: "Hours Spotify", value: 1257 },
-    { label: "Hours Netflix", value: 300 },
-    { label: "YouTube Subs", value: 0 },
-    { label: "YouTube Views", value: 0 },
-    { label: "GitHub Followers", value: 0 },
-    { label: "GitHub Projects", value: 18 },
-    { label: "Blog Views", value: 0 },
-    { label: "Blog Likes", value: 0 },
+    { label: "Hours Coding", value: 6264, icon: "/images/uses/code.png" },
+    { label: "Hours Gaming/Month", value: 34, icon: "/images/uses/gaming.png" },
+    { label: "Hours Spotify", value: 1257, icon: "/images/uses/spotify.png" },
+    { label: "Hours Netflix", value: 300, icon: "/images/uses/netflix.png" },
+    { label: "YouTube Subs", value: 0, icon: "/images/uses/youtube.png" },
+    { label: "YouTube Views", value: 0, icon: "/images/uses/youtube.png" },
+    { label: "GitHub Followers", value: 2, icon: "/images/uses/github-activity.png" },
+    { label: "GitHub Projects", value: 99, icon: "/images/uses/github-activity.png", suffix: "+" },
+    { label: "Blog Views", value: 3456, icon: "/images/uses/blog-views.png" },
+    { label: "Blog Likes", value: 1627, icon: "/images/uses/blog-likes.png" },
   ],
 };
 

@@ -3,7 +3,7 @@
 import { Column, Flex, Heading, Text, Card, SmartImage } from "@/once-ui/components";
 import { uses } from "@/app/resources/content";
 import { Counter } from "@/components/Counter";
-import styles from "@/components/about/about.module.scss";
+import { motion } from "framer-motion";
 
 export function UsesClient() {
   return (
@@ -30,20 +30,20 @@ export function UsesClient() {
               style={{ minWidth: "280px", maxWidth: "400px" }}
             >
               <Flex direction="column" gap="m" fillWidth>
-                {device.image ? (
-                  <Flex 
-                    fillWidth 
-                    radius="m" 
-                    background="neutral-alpha-weak" 
-                    style={{
-                      height: "200px",
-                      overflow: "hidden",
-                      position: "relative",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
+                <Flex 
+                  fillWidth 
+                  radius="m" 
+                  background="neutral-alpha-weak" 
+                  style={{
+                    height: "160px",
+                    overflow: "hidden",
+                    position: "relative",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  {device.image ? (
                     <img
                       src={device.image}
                       alt={device.name}
@@ -55,19 +55,10 @@ export function UsesClient() {
                         padding: "0.5rem",
                       }}
                     />
-                  </Flex>
-                ) : (
-                  <Flex
-                    height={200}
-                    fillWidth
-                    horizontal="center"
-                    vertical="center"
-                    background="neutral-alpha-weak"
-                    radius="m"
-                  >
+                  ) : (
                     <Text variant="display-strong-xl">{device.icon}</Text>
-                  </Flex>
-                )}
+                  )}
+                </Flex>
                 <Column gap="4">
                   <Text variant="heading-strong-l">{device.name}</Text>
                   <Text variant="body-default-m" onBackground="neutral-weak">
@@ -92,65 +83,56 @@ export function UsesClient() {
             </Text>
             <Flex fillWidth gap="m" wrap>
               {category.tools.map((tool, toolIndex) => (
-                <Flex
+                <motion.div
                   key={toolIndex}
-                  padding="m"
-                  border="neutral-alpha-weak"
-                  background="neutral-alpha-weak"
-                  radius="m"
-                  vertical="center"
-                  gap="m"
-                  style={{
-                    minWidth: "fit-content",
-                    flex: "0 1 auto",
-                  }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  style={{ flex: "1 1 200px", minWidth: "200px" }}
                 >
-                  <Flex
-                    style={{
-                      width: "64px",
-                      height: "64px",
-                      minWidth: "64px",
-                      minHeight: "64px",
-                      overflow: "hidden",
-                      borderRadius: "var(--radius-s)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
+                  <Card 
+                    padding="m" 
+                    border="neutral-alpha-weak" 
+                    background="neutral-alpha-weak"
+                    style={{ height: "100%" }}
                   >
-                    <img
-                      src={tool.icon}
-                      alt={tool.name}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </Flex>
-                  <Text variant="body-default-m" style={{ whiteSpace: "nowrap" }}>
-                    {tool.name}
-                  </Text>
-                </Flex>
+                    <Flex vertical="center" gap="m">
+                      <Flex width={56} height={56} radius="s" style={{ overflow: "hidden", minWidth: "56px" }}>
+                        <SmartImage src={tool.icon} alt={tool.name} />
+                      </Flex>
+                      <Text variant="body-default-m" weight="strong">{tool.name}</Text>
+                    </Flex>
+                  </Card>
+                </motion.div>
               ))}
             </Flex>
           </Column>
         ))}
       </Column>
 
-      {/* Activities Section (Animated Counters) */}
+      {/* Activities Section (Animated Counters with Icons) */}
       <Column fillWidth gap="m" paddingY="l">
         <Heading as="h2" variant="display-strong-s" marginBottom="m">
           Activities
         </Heading>
         <Flex fillWidth gap="m" wrap>
           {uses.activities.map((activity, index) => (
-            <Card key={index} flex={1} padding="l" border="neutral-medium" style={{ minWidth: "180px" }}>
-              <Flex direction="column" gap="8" horizontal="center">
-                <Counter label={activity.label} value={activity.value} />
-              </Flex>
-            </Card>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              style={{ flex: "1 1 180px", minWidth: "180px" }}
+            >
+              <Card padding="l" border="neutral-medium" style={{ height: "100%" }}>
+                <Counter 
+                  label={activity.label} 
+                  value={activity.value} 
+                  icon={activity.icon} 
+                  suffix={activity.suffix} 
+                />
+              </Card>
+            </motion.div>
           ))}
         </Flex>
       </Column>
