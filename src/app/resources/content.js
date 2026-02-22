@@ -8,8 +8,8 @@ const person = {
   },
   role: "Full-Stack Developer & Tech Explorer",
   avatar: "/images/avatar.jpg",
-  location: "Africa/Harare", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["Shona", "English", "Ndebele"], // optional: Leave the array empty if you don't want to display languages
+  location: "Africa/Harare",
+  languages: ["Shona", "English", "Ndebele"],
 };
 
 const newsletter = {
@@ -24,8 +24,6 @@ const newsletter = {
 };
 
 const social = [
-  // Links are automatically displayed.
-  // Import new icons in /once-ui/icons.ts
   {
     name: "GitHub",
     icon: "github",
@@ -88,7 +86,7 @@ const about = {
     ),
   },
   work: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Work Experience & Projects",
     experiences: [
       {
@@ -134,7 +132,7 @@ const about = {
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Academic Foundation",
     institutions: [
       {
@@ -159,7 +157,7 @@ const about = {
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Technical Skills",
     skills: [
       {
@@ -200,23 +198,18 @@ const blog = {
   label: "Blog",
   title: "Writing about development and tech...",
   description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
 };
 
 const work = {
   label: "Projects",
   title: "My projects",
   description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/work/projects
-  // All projects will be listed on the /home and /work routes
 };
 
 const gallery = {
   label: "Gallery",
   title: "My photo gallery",
   description: `A photo collection by ${person.name}`,
-  // Images from https://pexels.com
   images: [],
 };
 
@@ -252,36 +245,15 @@ const uses = {
     },
   ],
   software: [
-    {
-      category: "Development",
-      tools: [
-        { name: "VSCode", icon: "/images/uses/vscode.png" },
-        { name: "XCode", icon: "/images/uses/xcode.png" },
-        { name: "OrbStack", icon: "/images/uses/orbstack.png" },
-        { name: "CloudFlare", icon: "/images/uses/cloudflare.png" },
-        { name: "Ghosty", icon: "/images/uses/ghosty.png" },
-      ],
-    },
-    {
-      category: "Design & Productivity",
-      tools: [
-        { name: "Figma", icon: "/images/uses/figma.png" },
-        { name: "1Password", icon: "/images/uses/1password.png" },
-        { name: "Arc Browser", icon: "/images/uses/arc.png" },
-        { name: "CleanShot", icon: "/images/uses/cleanshot.png" },
-        { name: "Discord", icon: "/images/uses/discord.png" },
-      ],
-    },
-    {
-      category: "Entertainment & Others",
-      tools: [
-        { name: "Spotify", icon: "/images/uses/spotify.png" },
-        { name: "Netflix", icon: "/images/uses/netflix.png" },
-        { name: "ChatGPT", icon: "/images/uses/chatgpt.png" },
-        { name: "IINA", icon: "/images/uses/iina.png" },
-        { name: "Ice", icon: "/images/uses/ice.png" },
-      ],
-    },
+    { name: "VSCode", icon: "https://cdn.simpleicons.org/visualstudiocode/007ACC" },
+    { name: "XCode", icon: "https://cdn.simpleicons.org/xcode/147EFB" },
+    { name: "OrbStack", icon: "https://cdn.simpleicons.org/orbstack/000000" },
+    { name: "CloudFlare", icon: "https://cdn.simpleicons.org/cloudflare/F38020" },
+    { name: "Figma", icon: "https://cdn.simpleicons.org/figma/F24E1E" },
+    { name: "1Password", icon: "https://cdn.simpleicons.org/1password/1A8CFF" },
+    { name: "Discord", icon: "https://cdn.simpleicons.org/discord/5865F2" },
+    { name: "Spotify", icon: "https://cdn.simpleicons.org/spotify/1DB954" },
+    { name: "Netflix", icon: "https://cdn.simpleicons.org/netflix/E50914" },
   ],
   activities: [
     { label: "Hours Coding", value: 6264, icon: "/images/uses/code.png" },

@@ -4,6 +4,7 @@ import { Column, Flex, Heading, Text, Card, SmartImage } from "@/once-ui/compone
 import { uses } from "@/app/resources/content";
 import { Counter } from "@/components/Counter";
 import { motion } from "framer-motion";
+import styles from "./uses.module.scss";
 
 export function UsesClient() {
   return (
@@ -71,42 +72,32 @@ export function UsesClient() {
         </Flex>
       </Column>
 
-      {/* Software & Tools with Official Icons */}
+      {/* Software & Tools with Simple Icons CDN */}
       <Column fillWidth gap="xl" paddingY="l">
         <Heading as="h2" variant="display-strong-s" marginBottom="m">
           Software & Tools
         </Heading>
-        {uses.software.map((category, index) => (
-          <Column key={index} fillWidth gap="m">
-            <Text variant="heading-strong-m" onBackground="neutral-weak" marginBottom="s">
-              {category.category}
-            </Text>
-            <Flex fillWidth gap="m" wrap>
-              {category.tools.map((tool, toolIndex) => (
-                <motion.div
-                  key={toolIndex}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  style={{ flex: "1 1 200px", minWidth: "200px" }}
-                >
-                  <Card 
-                    padding="m" 
-                    border="neutral-alpha-weak" 
-                    background="neutral-alpha-weak"
-                    style={{ height: "100%" }}
-                  >
-                    <Flex vertical="center" gap="m">
-                      <Flex width={56} height={56} radius="s" style={{ overflow: "hidden", minWidth: "56px" }}>
-                        <SmartImage src={tool.icon} alt={tool.name} />
-                      </Flex>
-                      <Text variant="body-default-m" weight="strong">{tool.name}</Text>
-                    </Flex>
-                  </Card>
-                </motion.div>
-              ))}
-            </Flex>
-          </Column>
-        ))}
+        <div className={styles.softwareGrid}>
+          {uses.software.map((tool, index) => (
+            <motion.div
+              key={index}
+              className={styles.softwareCard}
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              <div className={styles.iconContainer}>
+                <img
+                  src={tool.icon}
+                  alt={tool.name}
+                  className={styles.icon}
+                />
+              </div>
+              <Text variant="body-default-s" className={styles.toolName}>
+                {tool.name}
+              </Text>
+            </motion.div>
+          ))}
+        </div>
       </Column>
 
       {/* Activities Section (Animated Counters with Icons) */}
