@@ -245,27 +245,78 @@ const uses = {
     },
   ],
   software: [
-    { name: "VSCode", icon: "https://cdn.simpleicons.org/visualstudiocode/007ACC" },
-    { name: "XCode", icon: "https://cdn.simpleicons.org/xcode/147EFB" },
-    { name: "OrbStack", icon: "https://cdn.simpleicons.org/orbstack/000000" },
-    { name: "CloudFlare", icon: "https://cdn.simpleicons.org/cloudflare/F38020" },
-    { name: "Figma", icon: "https://cdn.simpleicons.org/figma/F24E1E" },
-    { name: "1Password", icon: "https://cdn.simpleicons.org/1password/1A8CFF" },
-    { name: "Discord", icon: "https://cdn.simpleicons.org/discord/5865F2" },
-    { name: "Spotify", icon: "https://cdn.simpleicons.org/spotify/1DB954" },
-    { name: "Netflix", icon: "https://cdn.simpleicons.org/netflix/E50914" },
+    {
+      name: "VSCode",
+      description: "My primary code editor with a custom setup for maximum productivity.",
+      icon: "https://cdn.simpleicons.org/visualstudiocode/007ACC"
+    },
+    {
+      name: "XCode",
+      description: "Essential for building and developing native iOS and macOS applications.",
+      icon: "/images/uses/xcode.png"
+    },
+    {
+      name: "OrbStack",
+      description: "A fast, light, and simple way to run Docker containers and Linux on macOS.",
+      icon: "/images/uses/orbstack.png"
+    },
+    {
+      name: "Ghostty",
+      description: "A lightning-fast, hardware-accelerated terminal emulator.",
+      icon: "/images/uses/ghostty.png"
+    },
+    {
+      name: "Cloudflare",
+      description: "Ensuring security and performance for all my web projects and domains.",
+      icon: "https://cdn.simpleicons.org/cloudflare/F38020"
+    },
+    {
+      name: "1Password",
+      description: "The most secure way to manage passwords and sensitive digital information.",
+      icon: "/images/uses/1password.png"
+    },
+    {
+      name: "Figma",
+      description: "My go-to tool for UI/UX design and rapid prototyping.",
+      icon: "https://cdn.simpleicons.org/figma/F24E1E"
+    },
+    {
+      name: "Discord",
+      description: "Staying connected with developer communities and project teams.",
+      icon: "https://cdn.simpleicons.org/discord/5865F2"
+    },
+    {
+      name: "Spotify",
+      description: "Providing the perfect soundtrack for deep work and coding sessions.",
+      icon: "https://cdn.simpleicons.org/spotify/1DB954"
+    },
+    {
+      name: "Netflix",
+      description: "For unwinding and catching up on the latest shows and movies.",
+      icon: "https://cdn.simpleicons.org/netflix/E50914"
+    },
+    {
+      name: "Arc Browser",
+      description: "A modern, sidebar-first browsing experience that helps me stay organized.",
+      icon: "/images/uses/arc.png"
+    },
+    {
+      name: "CleanShot X",
+      description: "The ultimate tool for capturing and annotating screenshots and screen recordings.",
+      icon: "/images/uses/cleanshot.png"
+    }
   ],
   activities: [
-    { label: "Hours Coding", value: 6264, icon: "/images/uses/code.png" },
-    { label: "Hours Gaming/Month", value: 34, icon: "/images/uses/gaming.png" },
-    { label: "Hours Spotify", value: 1257, icon: "/images/uses/spotify.png" },
-    { label: "Hours Netflix", value: 300, icon: "/images/uses/netflix.png" },
-    { label: "YouTube Subs", value: 0, icon: "/images/uses/youtube.png" },
-    { label: "YouTube Views", value: 0, icon: "/images/uses/youtube.png" },
-    { label: "GitHub Followers", value: 2, icon: "/images/uses/github-activity.png" },
-    { label: "GitHub Projects", value: 99, icon: "/images/uses/github-activity.png", suffix: "+" },
-    { label: "Blog Views", value: 3456, icon: "/images/uses/blog-views.png" },
-    { label: "Blog Likes", value: 1627, icon: "/images/uses/blog-likes.png" },
+    { label: "Hours Coding", value: 6264, icon: "https://cdn.simpleicons.org/codefactor/ffffff" },
+    { label: "Hours Gaming/Month", value: 34, icon: "https://cdn.simpleicons.org/gamecontroller/ffffff" },
+    { label: "Hours Spotify", value: 1257, icon: "https://cdn.simpleicons.org/spotify/1DB954" },
+    { label: "Hours Netflix", value: 300, icon: "https://cdn.simpleicons.org/netflix/E50914" },
+    { label: "YouTube Subs", value: 0, icon: "https://cdn.simpleicons.org/youtube/FF0000" },
+    { label: "YouTube Views", value: 0, icon: "https://cdn.simpleicons.org/youtube/FF0000" },
+    { label: "GitHub Followers", value: 2, icon: "https://cdn.simpleicons.org/github/ffffff" },
+    { label: "GitHub Projects", value: 99, icon: "https://cdn.simpleicons.org/github/ffffff", suffix: "+" },
+    { label: "Blog Views", value: 3456, icon: "https://cdn.simpleicons.org/docsdotrs/ffffff" },
+    { label: "Blog Likes", value: 1627, icon: "https://cdn.simpleicons.org/heart/ffffff" },
   ],
 };
 

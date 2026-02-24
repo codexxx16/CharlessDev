@@ -1,6 +1,6 @@
 "use client";
 
-import { Column, Flex, Heading, Text, Card, SmartImage } from "@/once-ui/components";
+import { Column, Flex, Heading, Text, Card } from "@/once-ui/components";
 import { uses } from "@/app/resources/content";
 import { Counter } from "@/components/Counter";
 import { motion } from "framer-motion";
@@ -16,7 +16,7 @@ export function UsesClient() {
         </Text>
       </Column>
 
-      {/* Devices Section with Mockups */}
+      {/* Hardware Section (Untouched as requested) */}
       <Column fillWidth gap="m">
         <Heading as="h2" variant="display-strong-s" marginBottom="m">
           Hardware & Devices
@@ -44,21 +44,17 @@ export function UsesClient() {
                     justifyContent: "center",
                   }}
                 >
-                  {device.image ? (
-                    <img
-                      src={device.image}
-                      alt={device.name}
-                      style={{
-                        height: "100%",
-                        width: "100%",
-                        objectFit: "contain",
-                        objectPosition: "center",
-                        padding: "0.5rem",
-                      }}
-                    />
-                  ) : (
-                    <Text variant="display-strong-xl">{device.icon}</Text>
-                  )}
+                  <img
+                    src={device.image}
+                    alt={device.name}
+                    style={{
+                      height: "100%",
+                      width: "100%",
+                      objectFit: "contain",
+                      objectPosition: "center",
+                      padding: "0.5rem",
+                    }}
+                  />
                 </Flex>
                 <Column gap="4">
                   <Text variant="heading-strong-l">{device.name}</Text>
@@ -72,8 +68,8 @@ export function UsesClient() {
         </Flex>
       </Column>
 
-      {/* Software & Tools with Simple Icons CDN */}
-      <Column fillWidth gap="xl" paddingY="l">
+      {/* Software & Tools Redesigned Section */}
+      <Column fillWidth gap="m" paddingY="l">
         <Heading as="h2" variant="display-strong-s" marginBottom="m">
           Software & Tools
         </Heading>
@@ -82,7 +78,7 @@ export function UsesClient() {
             <motion.div
               key={index}
               className={styles.softwareCard}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <div className={styles.iconContainer}>
@@ -92,40 +88,36 @@ export function UsesClient() {
                   className={styles.icon}
                 />
               </div>
-              <Text variant="body-default-s" className={styles.toolName}>
-                {tool.name}
-              </Text>
+              <div className={styles.toolInfo}>
+                <Text variant="heading-strong-m" className={styles.toolName}>
+                  {tool.name}
+                </Text>
+                <Text variant="body-default-s" className={styles.toolDescription}>
+                  {tool.description}
+                </Text>
+              </div>
             </motion.div>
           ))}
         </div>
       </Column>
 
-      {/* Activities Section (Animated Counters with Icons) */}
+      {/* Activities Section (Fixed with Inline Icons) */}
       <Column fillWidth gap="m" paddingY="l">
         <Heading as="h2" variant="display-strong-s" marginBottom="m">
           Activities
         </Heading>
-        <Flex fillWidth gap="m" wrap>
+        <div className={styles.activitiesGrid}>
           {uses.activities.map((activity, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              style={{ flex: "1 1 180px", minWidth: "180px" }}
-            >
-              <Card padding="l" border="neutral-medium" style={{ height: "100%" }}>
-                <Counter 
-                  label={activity.label} 
-                  value={activity.value} 
-                  icon={activity.icon} 
-                  suffix={activity.suffix} 
-                />
-              </Card>
-            </motion.div>
+            <Card key={index} padding="l" border="neutral-medium">
+              <Counter 
+                label={activity.label} 
+                value={activity.value} 
+                icon={activity.icon} 
+                suffix={activity.suffix} 
+              />
+            </Card>
           ))}
-        </Flex>
+        </div>
       </Column>
 
       {/* Travel Section */}

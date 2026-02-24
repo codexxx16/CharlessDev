@@ -1,41 +1,26 @@
 .softwareGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
   width: 100%;
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-
-  @media (min-width: 769px) and (max-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (min-width: 1025px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }
 
 .softwareCard {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 1rem;
+  gap: 1.5rem;
+  padding: 1.25rem;
   background: var(--background-neutral-alpha-weak);
   border: 1px solid var(--border-neutral-alpha-medium);
-  border-radius: var(--radius-m);
-  transition: all 0.2s ease;
-  cursor: pointer;
-  height: 100%;
-  min-height: 140px;
+  border-radius: var(--radius-l);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+  width: 100%;
 
   &:hover {
     border-color: var(--border-neutral-alpha-strong);
     background: var(--background-neutral-alpha-medium);
+    transform: translateY(-2px);
   }
 }
 
@@ -43,10 +28,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: transparent;
-  border-radius: var(--radius-s);
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  background: var(--background-neutral-alpha-weak);
+  border-radius: var(--radius-m);
   overflow: hidden;
 }
 
@@ -57,10 +43,30 @@
   object-position: center;
 }
 
+.toolInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .toolName {
-  text-align: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.toolDescription {
+  color: var(--text-on-background-neutral-weak);
   font-size: 0.875rem;
-  line-height: 1.2;
-  word-break: break-word;
-  max-width: 100%;
+  line-height: 1.4;
+}
+
+.activitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 }
