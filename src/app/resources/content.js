@@ -248,7 +248,7 @@ const uses = {
     {
       name: "VSCode",
       description: "My primary code editor with a custom setup for maximum productivity.",
-      icon: "https://cdn.simpleicons.org/visualstudiocode/007ACC"
+      icon: "vscode-inline-svg"
     },
     {
       name: "XCode",
@@ -328,4 +328,5 @@ const questbook = {
   tagline: "Independent one-man freelance team. Affordable. T&Cs apply.",
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery, uses, questbook };
+// Special marker for VSCode inline SVG - handled in UsesClient.tsx
+export { person, social, newsletter, home, blog, work, gallery, uses, questbook };
