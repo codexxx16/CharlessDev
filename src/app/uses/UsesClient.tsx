@@ -1,10 +1,76 @@
 "use client";
 
-import { Column, Flex, Heading, Text, Card, SmartImage } from "@/once-ui/components";
+import { useEffect, useState } from "react";
+import { Column, Flex, Heading, Text, Card } from "@/once-ui/components";
 import { uses } from "@/app/resources/content";
-import { Counter } from "@/components/Counter";
+import { motion } from "framer-motion";
+import styles from "./uses.module.scss";
+import { ActivityCounter } from "@/components/ActivityCounter";
+import {
+  CodingIcon,
+  GamingIcon,
+  GitHubIcon,
+  YouTubeIcon,
+  SpotifyIcon,
+  NetflixIcon,
+  EyeIcon,
+  HeartIcon,
+} from "@/components/ActivityIcons";
 
 export function UsesClient() {
+  const [activities, setActivities] = useState(uses.activities);
+
+  useEffect(() => {
+    const fetchGitHubData = async () => {
+      try {
+        const response = await fetch("https://api.github.com/users/codexxx16");
+        const data = await response.json();
+        
+        // Update activities with real GitHub data
+        setActivities((prevActivities) =>
+          prevActivities.map((activity) => {
+            if (activity.label === "GitHub Followers") {
+              return { ...activity, value: data.followers };
+            }
+            if (activity.label === "GitHub Projects") {
+              return { ...activity, value: data.public_repos, suffix: "" };
+            }
+            return activity;
+          })
+        );
+      } catch (error) {
+        console.error("Failed to fetch GitHub data:", error);
+      }
+    };
+
+    fetchGitHubData();
+  }, []);
+
+  const getActivityIcon = (label: string) => {
+    switch (label) {
+      case "Hours Coding":
+        return <CodingIcon />;
+      case "Hours Gaming/Month":
+        return <GamingIcon />;
+      case "GitHub Followers":
+      case "GitHub Projects":
+        return <GitHubIcon />;
+      case "YouTube Subs":
+      case "YouTube Views":
+        return <YouTubeIcon />;
+      case "Hours Spotify":
+        return <SpotifyIcon />;
+      case "Hours Netflix":
+        return <NetflixIcon />;
+      case "Blog Views":
+        return <EyeIcon />;
+      case "Blog Likes":
+        return <HeartIcon />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <Column maxWidth="m" gap="xl" horizontal="center" paddingY="xl">
       <Column maxWidth="s" gap="m" horizontal="center">
@@ -14,7 +80,7 @@ export function UsesClient() {
         </Text>
       </Column>
 
-      {/* Devices Section with Mockups */}
+      {/* Hardware Section (Untouched as requested) */}
       <Column fillWidth gap="m">
         <Heading as="h2" variant="display-strong-s" marginBottom="m">
           Hardware & Devices
@@ -26,29 +92,34 @@ export function UsesClient() {
               flex={1}
               padding="l"
               border="neutral-medium"
-              style={{ minWidth: "300px", overflow: "hidden" }}
+              style={{ minWidth: "280px", maxWidth: "400px" }}
             >
               <Flex direction="column" gap="m" fillWidth>
-                {device.image ? (
-                  <Flex 
-                    height={240} 
-                    fillWidth 
-                    radius="m" 
-                    background="neutral-alpha-weak" 
-                    style={{ overflow: "hidden", position: "relative" }}
-                    marginBottom="m"
-                  >
-                    <SmartImage
-                      src={device.image}
-                      alt={device.name}
-                      style={{ objectFit: "contain", padding: "1rem" }}
-                    />
-                  </Flex>
-                ) : (
-                  <Flex height={240} fillWidth horizontal="center" vertical="center" background="neutral-alpha-weak" radius="m" marginBottom="m">
-                    <Text variant="display-strong-xl">{device.icon}</Text>
-                  </Flex>
-                )}
+                <Flex 
+                  fillWidth 
+                  radius="m" 
+                  background="neutral-alpha-weak" 
+                  style={{
+                    height: "160px",
+                    overflow: "hidden",
+                    position: "relative",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img
+                    src={device.image}
+                    alt={device.name}
+                    style={{
+                      height: "100%",
+                      width: "100%",
+                      objectFit: "contain",
+                      objectPosition: "center",
+                      padding: "0.5rem",
+                    }}
+                  />
+                </Flex>
                 <Column gap="4">
                   <Text variant="heading-strong-l">{device.name}</Text>
                   <Text variant="body-default-m" onBackground="neutral-weak">
@@ -61,52 +132,68 @@ export function UsesClient() {
         </Flex>
       </Column>
 
-      {/* Software & Tools with Official Icons */}
-      <Column fillWidth gap="xl" paddingY="l">
+      {/* Software & Tools Section with Cards */}
+      <Column fillWidth gap="m" paddingY="l">
         <Heading as="h2" variant="display-strong-s" marginBottom="m">
           Software & Tools
         </Heading>
-        {uses.software.map((category, index) => (
-          <Column key={index} fillWidth gap="m">
-            <Text variant="heading-strong-m" onBackground="neutral-weak" marginBottom="s">
-              {category.category}
-            </Text>
-            <Flex fillWidth gap="l" wrap>
-              {category.tools.map((tool, toolIndex) => (
-                <Card 
-                  key={toolIndex} 
-                  padding="m" 
-                  border="neutral-alpha-weak" 
-                  background="neutral-alpha-weak"
-                  style={{ minWidth: "160px", flex: "1 1 160px" }}
-                >
-                  <Flex vertical="center" gap="m">
-                    <Flex width={48} height={48} radius="s" style={{ overflow: "hidden" }}>
-                      <SmartImage src={tool.icon} alt={tool.name} />
-                    </Flex>
-                    <Text variant="body-default-m" weight="strong">{tool.name}</Text>
-                  </Flex>
-                </Card>
-              ))}
-            </Flex>
-          </Column>
-        ))}
+        <div className={styles.softwareGrid}>
+          {uses.software.map((tool, index) => (
+            <motion.div
+              key={index}
+              className={styles.softwareCard}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              <div className={styles.iconContainer}>
+                <img
+                  src={tool.icon}
+                  alt={tool.name}
+                  className={styles.icon}
+                  width="48"
+                  height="48"
+                />
+              </div>
+              <div className={styles.toolInfo}>
+                <Text variant="heading-strong-m" className={styles.toolName}>
+                  {tool.name}
+                </Text>
+                <Text variant="body-default-s" className={styles.toolDescription}>
+                  {tool.description}
+                </Text>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </Column>
 
-      {/* Activities Section (Animated Counters) */}
+      {/* Activities Section with Inline SVGs */}
       <Column fillWidth gap="m" paddingY="l">
         <Heading as="h2" variant="display-strong-s" marginBottom="m">
           Activities
         </Heading>
-        <Flex fillWidth gap="m" wrap>
-          {uses.activities.map((activity, index) => (
-            <Card key={index} flex={1} padding="l" border="neutral-medium" style={{ minWidth: "200px" }}>
-              <Flex direction="column" gap="8" horizontal="center">
-                <Counter label={activity.label} value={activity.value} />
-              </Flex>
-            </Card>
+        <div className={styles.activitiesGrid}>
+          {activities.map((activity, index) => (
+            <motion.div
+              key={index}
+              className={styles.activityCard}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
+              <div className={styles.activityIcon}>
+                {getActivityIcon(activity.label)}
+              </div>
+              <div className={styles.activityNumber}>
+                <ActivityCounter value={activity.value} suffix={activity.suffix || ""} />
+              </div>
+              <div className={styles.activityLabel}>
+                {activity.label}
+              </div>
+            </motion.div>
           ))}
-        </Flex>
+        </div>
       </Column>
 
       {/* Travel Section */}

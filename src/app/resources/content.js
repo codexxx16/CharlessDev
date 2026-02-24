@@ -8,8 +8,8 @@ const person = {
   },
   role: "Full-Stack Developer & Tech Explorer",
   avatar: "/images/avatar.jpg",
-  location: "Africa/Harare", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["Shona", "English", "Ndebele"], // optional: Leave the array empty if you don't want to display languages
+  location: "Africa/Harare",
+  languages: ["Shona", "English", "Ndebele"],
 };
 
 const newsletter = {
@@ -24,8 +24,6 @@ const newsletter = {
 };
 
 const social = [
-  // Links are automatically displayed.
-  // Import new icons in /once-ui/icons.ts
   {
     name: "GitHub",
     icon: "github",
@@ -88,7 +86,7 @@ const about = {
     ),
   },
   work: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Work Experience & Projects",
     experiences: [
       {
@@ -134,7 +132,7 @@ const about = {
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Academic Foundation",
     institutions: [
       {
@@ -159,7 +157,7 @@ const about = {
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Technical Skills",
     skills: [
       {
@@ -200,23 +198,18 @@ const blog = {
   label: "Blog",
   title: "Writing about development and tech...",
   description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
 };
 
 const work = {
   label: "Projects",
   title: "My projects",
   description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/work/projects
-  // All projects will be listed on the /home and /work routes
 };
 
 const gallery = {
   label: "Gallery",
   title: "My photo gallery",
   description: `A photo collection by ${person.name}`,
-  // Images from https://pexels.com
   images: [],
 };
 
@@ -238,7 +231,7 @@ const uses = {
     {
       name: "AirPods 3",
       specs: "Wireless",
-      icon: "🎧",
+      image: "/images/uses/airpods-3.png",
     },
     {
       name: "Starlink Mini Kit",
@@ -253,47 +246,77 @@ const uses = {
   ],
   software: [
     {
-      category: "Development",
-      tools: [
-        { name: "VSCode", icon: "/images/uses/vscode.png" },
-        { name: "XCode", icon: "/images/uses/xcode.png" },
-        { name: "OrbStack", icon: "/images/uses/orbstack.png" },
-        { name: "CloudFlare", icon: "/images/uses/cloudflare.png" },
-        { name: "Ghosty", icon: "/images/uses/ghosty.png" },
-      ],
+      name: "VSCode",
+      description: "My primary code editor with a custom setup for maximum productivity.",
+      icon: "https://cdn.simpleicons.org/visualstudiocode/007ACC"
     },
     {
-      category: "Design & Productivity",
-      tools: [
-        { name: "Figma", icon: "/images/uses/figma.png" },
-        { name: "1Password", icon: "/images/uses/1password.png" },
-        { name: "Arc Browser", icon: "/images/uses/arc.png" },
-        { name: "CleanShot", icon: "/images/uses/cleanshot.png" },
-        { name: "Discord", icon: "/images/uses/discord.png" },
-      ],
+      name: "XCode",
+      description: "Essential for building and developing native iOS and macOS applications.",
+      icon: "/images/uses/xcode.png"
     },
     {
-      category: "Entertainment & Others",
-      tools: [
-        { name: "Spotify", icon: "/images/uses/spotify.png" },
-        { name: "Netflix", icon: "/images/uses/netflix.png" },
-        { name: "ChatGPT", icon: "/images/uses/chatgpt.png" },
-        { name: "IINA", icon: "/images/uses/iina.png" },
-        { name: "Ice", icon: "/images/uses/ice.png" },
-      ],
+      name: "OrbStack",
+      description: "A fast, light, and simple way to run Docker containers and Linux on macOS.",
+      icon: "/images/uses/orbstack.png"
     },
+    {
+      name: "Ghostty",
+      description: "A lightning-fast, hardware-accelerated terminal emulator.",
+      icon: "/images/uses/ghostty.png"
+    },
+    {
+      name: "Cloudflare",
+      description: "Ensuring security and performance for all my web projects and domains.",
+      icon: "https://cdn.simpleicons.org/cloudflare/F38020"
+    },
+    {
+      name: "1Password",
+      description: "The most secure way to manage passwords and sensitive digital information.",
+      icon: "/images/uses/1password.png"
+    },
+    {
+      name: "Figma",
+      description: "My go-to tool for UI/UX design and rapid prototyping.",
+      icon: "https://cdn.simpleicons.org/figma/F24E1E"
+    },
+    {
+      name: "Discord",
+      description: "Staying connected with developer communities and project teams.",
+      icon: "https://cdn.simpleicons.org/discord/5865F2"
+    },
+    {
+      name: "Spotify",
+      description: "Providing the perfect soundtrack for deep work and coding sessions.",
+      icon: "https://cdn.simpleicons.org/spotify/1DB954"
+    },
+    {
+      name: "Netflix",
+      description: "For unwinding and catching up on the latest shows and movies.",
+      icon: "https://cdn.simpleicons.org/netflix/E50914"
+    },
+    {
+      name: "Arc Browser",
+      description: "A modern, sidebar-first browsing experience that helps me stay organized.",
+      icon: "/images/uses/arc.png"
+    },
+    {
+      name: "CleanShot X",
+      description: "The ultimate tool for capturing and annotating screenshots and screen recordings.",
+      icon: "/images/uses/cleanshot.png"
+    }
   ],
   activities: [
-    { label: "Hours Coding", value: 6264 },
-    { label: "Hours Gaming/Month", value: 34 },
-    { label: "Hours Spotify", value: 1257 },
-    { label: "Hours Netflix", value: 300 },
-    { label: "YouTube Subs", value: 0 },
-    { label: "YouTube Views", value: 0 },
-    { label: "GitHub Followers", value: 0 },
-    { label: "GitHub Projects", value: 18 },
-    { label: "Blog Views", value: 0 },
-    { label: "Blog Likes", value: 0 },
+    { label: "Hours Coding", value: 6264, icon: "https://cdn.simpleicons.org/codefactor/ffffff" },
+    { label: "Hours Gaming/Month", value: 34, icon: "https://cdn.simpleicons.org/gamecontroller/ffffff" },
+    { label: "Hours Spotify", value: 1257, icon: "https://cdn.simpleicons.org/spotify/1DB954" },
+    { label: "Hours Netflix", value: 300, icon: "https://cdn.simpleicons.org/netflix/E50914" },
+    { label: "YouTube Subs", value: 0, icon: "https://cdn.simpleicons.org/youtube/FF0000" },
+    { label: "YouTube Views", value: 0, icon: "https://cdn.simpleicons.org/youtube/FF0000" },
+    { label: "GitHub Followers", value: 2, icon: "https://cdn.simpleicons.org/github/ffffff" },
+    { label: "GitHub Projects", value: 99, icon: "https://cdn.simpleicons.org/github/ffffff", suffix: "+" },
+    { label: "Blog Views", value: 3456, icon: "https://cdn.simpleicons.org/docsdotrs/ffffff" },
+    { label: "Blog Likes", value: 1627, icon: "https://cdn.simpleicons.org/heart/ffffff" },
   ],
 };
 
