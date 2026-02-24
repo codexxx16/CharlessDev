@@ -329,4 +329,4 @@ const questbook = {
 };
 
 // Special marker for VSCode inline SVG - handled in UsesClient.tsx
-export { person, social, newsletter, home, blog, work, gallery, uses, questbook };
+export { person, social, newsletter, home, about, blog, work, gallery, uses, questbook };
