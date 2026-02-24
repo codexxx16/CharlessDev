@@ -9,18 +9,18 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  padding: 1.25rem;
-  background: var(--background-neutral-alpha-weak);
-  border: 1px solid var(--border-neutral-alpha-medium);
-  border-radius: var(--radius-l);
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
   width: 100%;
 
   &:hover {
-    border-color: var(--border-neutral-alpha-strong);
-    background: var(--background-neutral-alpha-medium);
-    transform: translateY(-2px);
+    transform: scale(1.02);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
   }
 }
 
@@ -28,11 +28,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 64px;
-  height: 64px;
-  min-width: 64px;
-  background: var(--background-neutral-alpha-weak);
-  border-radius: var(--radius-m);
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
   overflow: hidden;
 }
 
@@ -47,11 +47,12 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  flex: 1;
 }
 
 .toolName {
   font-weight: 700;
-  font-size: 1.125rem;
+  font-size: 1rem;
 }
 
 .toolDescription {
@@ -62,11 +63,47 @@
 
 .activitiesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1rem;
   width: 100%;
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.activityCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  min-height: 160px;
+  max-height: 160px;
+  text-align: center;
+}
+
+.activityIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.activityNumber {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.activityLabel {
+  font-size: 0.75rem;
+  color: var(--text-on-background-neutral-weak);
+  line-height: 1.2;
 }

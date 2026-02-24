@@ -2,11 +2,45 @@
 
 import { Column, Flex, Heading, Text, Card } from "@/once-ui/components";
 import { uses } from "@/app/resources/content";
-import { Counter } from "@/components/Counter";
 import { motion } from "framer-motion";
 import styles from "./uses.module.scss";
+import {
+  CodingIcon,
+  GamingIcon,
+  GitHubIcon,
+  YouTubeIcon,
+  SpotifyIcon,
+  NetflixIcon,
+  EyeIcon,
+  HeartIcon,
+} from "@/components/ActivityIcons";
 
 export function UsesClient() {
+  const getActivityIcon = (label: string) => {
+    switch (label) {
+      case "Hours Coding":
+        return <CodingIcon />;
+      case "Hours Gaming/Month":
+        return <GamingIcon />;
+      case "GitHub Followers":
+      case "GitHub Projects":
+        return <GitHubIcon />;
+      case "YouTube Subs":
+      case "YouTube Views":
+        return <YouTubeIcon />;
+      case "Hours Spotify":
+        return <SpotifyIcon />;
+      case "Hours Netflix":
+        return <NetflixIcon />;
+      case "Blog Views":
+        return <EyeIcon />;
+      case "Blog Likes":
+        return <HeartIcon />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <Column maxWidth="m" gap="xl" horizontal="center" paddingY="xl">
       <Column maxWidth="s" gap="m" horizontal="center">
@@ -68,7 +102,7 @@ export function UsesClient() {
         </Flex>
       </Column>
 
-      {/* Software & Tools Redesigned Section */}
+      {/* Software & Tools Section with Cards */}
       <Column fillWidth gap="m" paddingY="l">
         <Heading as="h2" variant="display-strong-s" marginBottom="m">
           Software & Tools
@@ -78,15 +112,23 @@ export function UsesClient() {
             <motion.div
               key={index}
               className={styles.softwareCard}
-              whileHover={{ scale: 1.01 }}
+              whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <div className={styles.iconContainer}>
-                <img
-                  src={tool.icon}
-                  alt={tool.name}
-                  className={styles.icon}
-                />
+                {tool.icon.startsWith("http") ? (
+                  <img
+                    src={tool.icon}
+                    alt={tool.name}
+                    className={styles.icon}
+                  />
+                ) : (
+                  <img
+                    src={tool.icon}
+                    alt={tool.name}
+                    className={styles.icon}
+                  />
+                )}
               </div>
               <div className={styles.toolInfo}>
                 <Text variant="heading-strong-m" className={styles.toolName}>
@@ -101,21 +143,32 @@ export function UsesClient() {
         </div>
       </Column>
 
-      {/* Activities Section (Fixed with Inline Icons) */}
+      {/* Activities Section with Inline SVGs */}
       <Column fillWidth gap="m" paddingY="l">
         <Heading as="h2" variant="display-strong-s" marginBottom="m">
           Activities
         </Heading>
         <div className={styles.activitiesGrid}>
           {uses.activities.map((activity, index) => (
-            <Card key={index} padding="l" border="neutral-medium">
-              <Counter 
-                label={activity.label} 
-                value={activity.value} 
-                icon={activity.icon} 
-                suffix={activity.suffix} 
-              />
-            </Card>
+            <motion.div
+              key={index}
+              className={styles.activityCard}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
+              <div className={styles.activityIcon}>
+                {getActivityIcon(activity.label)}
+              </div>
+              <div className={styles.activityNumber}>
+                {activity.value.toLocaleString()}
+                {activity.suffix}
+              </div>
+              <div className={styles.activityLabel}>
+                {activity.label}
+              </div>
+            </motion.div>
           ))}
         </div>
       </Column>
