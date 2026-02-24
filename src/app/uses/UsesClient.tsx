@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Column, Flex, Heading, Text, Card } from "@/once-ui/components";
 import { uses } from "@/app/resources/content";
 import { motion } from "framer-motion";
@@ -17,6 +18,34 @@ import {
 } from "@/components/ActivityIcons";
 
 export function UsesClient() {
+  const [activities, setActivities] = useState(uses.activities);
+
+  useEffect(() => {
+    const fetchGitHubData = async () => {
+      try {
+        const response = await fetch("https://api.github.com/users/codexxx16");
+        const data = await response.json();
+        
+        // Update activities with real GitHub data
+        setActivities((prevActivities) =>
+          prevActivities.map((activity) => {
+            if (activity.label === "GitHub Followers") {
+              return { ...activity, value: data.followers };
+            }
+            if (activity.label === "GitHub Projects") {
+              return { ...activity, value: data.public_repos, suffix: "" };
+            }
+            return activity;
+          })
+        );
+      } catch (error) {
+        console.error("Failed to fetch GitHub data:", error);
+      }
+    };
+
+    fetchGitHubData();
+  }, []);
+
   const getActivityIcon = (label: string) => {
     switch (label) {
       case "Hours Coding":
@@ -144,7 +173,7 @@ export function UsesClient() {
           Activities
         </Heading>
         <div className={styles.activitiesGrid}>
-          {uses.activities.map((activity, index) => (
+          {activities.map((activity, index) => (
             <motion.div
               key={index}
               className={styles.activityCard}
@@ -157,7 +186,7 @@ export function UsesClient() {
                 {getActivityIcon(activity.label)}
               </div>
               <div className={styles.activityNumber}>
-                <ActivityCounter value={activity.value} suffix={activity.suffix} />
+                <ActivityCounter value={activity.value} suffix={activity.suffix || ""} />
               </div>
               <div className={styles.activityLabel}>
                 {activity.label}
