@@ -4,6 +4,7 @@ import { Column, Flex, Heading, Text, Card } from "@/once-ui/components";
 import { uses } from "@/app/resources/content";
 import { motion } from "framer-motion";
 import styles from "./uses.module.scss";
+import { ActivityCounter } from "@/components/ActivityCounter";
 import {
   CodingIcon,
   GamingIcon,
@@ -116,19 +117,13 @@ export function UsesClient() {
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <div className={styles.iconContainer}>
-                {tool.icon.startsWith("http") ? (
-                  <img
-                    src={tool.icon}
-                    alt={tool.name}
-                    className={styles.icon}
-                  />
-                ) : (
-                  <img
-                    src={tool.icon}
-                    alt={tool.name}
-                    className={styles.icon}
-                  />
-                )}
+                <img
+                  src={tool.icon}
+                  alt={tool.name}
+                  className={styles.icon}
+                  width="48"
+                  height="48"
+                />
               </div>
               <div className={styles.toolInfo}>
                 <Text variant="heading-strong-m" className={styles.toolName}>
@@ -162,8 +157,7 @@ export function UsesClient() {
                 {getActivityIcon(activity.label)}
               </div>
               <div className={styles.activityNumber}>
-                {activity.value.toLocaleString()}
-                {activity.suffix}
+                <ActivityCounter value={activity.value} suffix={activity.suffix} />
               </div>
               <div className={styles.activityLabel}>
                 {activity.label}
