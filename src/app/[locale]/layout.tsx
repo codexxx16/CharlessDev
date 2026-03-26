@@ -1,10 +1,10 @@
 import "@/styles/globals.css"
-import type { Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import { notFound } from 'next/navigation'
-import { hasLocale, NextIntlClientProvider } from 'next-intl'
-import { setRequestLocale } from 'next-intl/server'
-import { NuqsAdapter } from 'nuqs/adapters/next/app'
+import type { Viewport } from "next"
+import { Geist, Geist_Mono } from "next/font/google"
+import { notFound } from "next/navigation"
+import { NextIntlClientProvider } from "next-intl"
+import { getMessages, setRequestLocale } from "next-intl/server"
+import { NuqsAdapter } from "nuqs/adapters/next/app"
 import { Analytics } from "@/components/analytics"
 import { Hello } from "@/components/hello"
 import { Providers } from "@/components/providers"
@@ -32,14 +32,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
 
-async function Layout(props: LayoutProps<"/[locale]">) {
+export default async function Layout(props: {
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
+}) {
   const { children, params } = props
   const { locale } = await params
 
+  if (!routing.locales.includes(locale as any)) {
     notFound()
   }
 
   setRequestLocale(locale)
+  const messages = await getMessages()
 
   return (
     <html
@@ -51,7 +56,7 @@ async function Layout(props: LayoutProps<"/[locale]">) {
       <body>
         <NuqsAdapter>
           <Providers>
-            <NextIntlClientProvider>
+            <NextIntlClientProvider locale={locale} messages={messages}>
               <Hello />
               {children}
               <Analytics />
@@ -62,5 +67,3 @@ async function Layout(props: LayoutProps<"/[locale]">) {
     </html>
   )
 }
-
-export default Layout
