@@ -1,4 +1,3 @@
-import type { MessageListOutput } from '@/orpc/client'
 
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'

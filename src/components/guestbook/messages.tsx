@@ -1,6 +1,5 @@
 'use client'
 
-import type { MessageListOutput } from '@/orpc/client'
 
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
