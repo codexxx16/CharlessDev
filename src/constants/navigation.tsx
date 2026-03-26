@@ -1,4 +1,4 @@
-import { SiFacebook, SiGithub, SiInstagram, SiX, SiYoutube } from '@icons-pack/react-simple-icons'
+import { SiGithub, SiLinkedin, SiX, SiYoutube } from '@icons-pack/react-simple-icons'
 import {
   BarChartIcon,
   FlameIcon,
@@ -11,7 +11,7 @@ import {
   UsersIcon,
 } from 'lucide-react'
 
-import { SITE_FACEBOOK_URL, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_X_URL, SITE_YOUTUBE_URL } from './site'
+import { SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_X_URL, SITE_YOUTUBE_URL } from './site'
 
 export const HEADER_LINKS = [
   {
@@ -73,18 +73,14 @@ export const FOOTER_GROUPS = [
       { href: '/uses', labelKey: 'common.labels.uses' },
       // i18n-check t('common.labels.projects')
       { href: '/projects', labelKey: 'common.labels.projects' },
-      // i18n-check t('common.labels.links')
-      { href: 'https://nelsonlai.link', labelKey: 'common.labels.links' },
     ],
   },
   {
     links: [
-      // i18n-check t('common.labels.facebook')
-      { href: SITE_FACEBOOK_URL, labelKey: 'common.labels.facebook' },
-      // i18n-check t('common.labels.instagram')
-      { href: SITE_INSTAGRAM_URL, labelKey: 'common.labels.instagram' },
       // i18n-check t('common.labels.github')
       { href: SITE_GITHUB_URL, labelKey: 'common.labels.github' },
+      // i18n-check t('common.labels.linkedin')
+      { href: SITE_LINKEDIN_URL, labelKey: 'common.labels.linkedin' },
       // i18n-check t('common.labels.youtube')
       { href: SITE_YOUTUBE_URL, labelKey: 'common.labels.youtube' },
     ],
@@ -142,14 +138,9 @@ export const SOCIAL_LINKS = [
     icon: <SiGithub />,
   },
   {
-    href: SITE_FACEBOOK_URL,
-    title: 'Facebook',
-    icon: <SiFacebook />,
-  },
-  {
-    href: SITE_INSTAGRAM_URL,
-    title: 'Instagram',
-    icon: <SiInstagram />,
+    href: SITE_LINKEDIN_URL,
+    title: 'LinkedIn',
+    icon: <SiLinkedin />,
   },
   {
     href: SITE_X_URL,

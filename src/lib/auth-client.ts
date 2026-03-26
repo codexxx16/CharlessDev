@@ -1,20 +1,25 @@
-import type { auth } from './auth'
+// Simplified auth client - no authentication required for guestbook
+// Visitors can post messages anonymously
 
-import { inferAdditionalFields } from 'better-auth/client/plugins'
-import { createAuthClient } from 'better-auth/react'
-import { toast } from 'sonner'
+export type User = {
+  id: string
+  name: string
+  email: string
+  image: string | null
+}
 
-export const authClient = createAuthClient({
-  plugins: [inferAdditionalFields<typeof auth>()],
-  fetchOptions: {
-    onError(e) {
-      if (e.error.status === 429) {
-        toast.error('Too many requests. Please try again later.')
-      }
-    },
+export type Session = {
+  user: User
+}
+
+// Returns null - no auth in this version
+export function useSession(): { data: Session | null; isPending: boolean } {
+  return { data: null, isPending: false }
+}
+
+export const authClient = {
+  signIn: {
+    social: async () => {},
   },
-})
-
-export const { useSession } = authClient
-
-export type User = (typeof authClient.$Infer.Session)['user']
+  signOut: async () => {},
+}

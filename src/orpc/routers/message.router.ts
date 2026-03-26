@@ -1,52 +1,44 @@
-import { ORPCError } from '@orpc/client'
-import { and, desc, eq, lt } from 'drizzle-orm'
-
-import { IS_PRODUCTION } from '@/constants/common'
-import { messages } from '@/db/schemas'
-import { sendGuestbookNotification } from '@/lib/discord'
-import { getDefaultImage } from '@/utils/get-default-image'
-
-import { protectedProcedure, publicProcedure } from '../procedures'
-import { EmptyOutputSchema } from '../schemas/common.schema'
+import { ORPCError } from "@orpc/client"
+import { supabase } from "@/lib/supabase"
+import { publicProcedure } from "../procedures"
+import { EmptyOutputSchema } from "../schemas/common.schema"
 import {
   CreateMessageInputSchema,
   CreateMessageOutputSchema,
   DeleteMessageInputSchema,
   ListMessagesInputSchema,
   ListMessagesOutputSchema,
-} from '../schemas/message.schema'
+} from "../schemas/message.schema"
 
 const listMessages = publicProcedure
   .input(ListMessagesInputSchema)
   .output(ListMessagesOutputSchema)
-  .handler(async ({ input, context }) => {
-    const query = await context.db.query.messages.findMany({
-      where: and(input.cursor ? lt(messages.createdAt, input.cursor) : undefined),
-      limit: input.limit,
-      with: {
-        user: {
-          columns: {
-            name: true,
-            image: true,
-            id: true,
-          },
-        },
+  .handler(async ({ input }) => {
+    let query = supabase
+      .from("guestbook_messages")
+      .select("id, body, created_at, user_id, user_name, user_image")
+      .order("created_at", { ascending: false })
+      .limit(input.limit)
+
+    if (input.cursor) {
+      query = query.lt("created_at", input.cursor)
+    }
+
+    const { data, error } = await query
+
+    if (error) throw new ORPCError("INTERNAL_SERVER_ERROR", { message: error.message })
+
+    const result = (data ?? []).map((row) => ({
+      id: row.id as string,
+      body: row.body as string,
+      createdAt: row.created_at as string,
+      userId: row.user_id as string,
+      user: {
+        id: row.user_id as string,
+        name: row.user_name as string,
+        image: row.user_image as string | null,
       },
-      orderBy: desc(messages.createdAt),
-    })
-
-    const result = query.map((message) => {
-      const defaultImage = getDefaultImage(message.user.id)
-
-      return {
-        ...message,
-        user: {
-          ...message.user,
-          name: message.user.name,
-          image: message.user.image ?? defaultImage,
-        },
-      }
-    })
+    }))
 
     return {
       messages: result,
@@ -54,50 +46,40 @@ const listMessages = publicProcedure
     }
   })
 
-const createMessage = protectedProcedure
+const createMessage = publicProcedure
   .input(CreateMessageInputSchema)
   .output(CreateMessageOutputSchema)
-  .handler(async ({ input, context }) => {
-    const { user } = context.session
-
-    const [message] = await context.db
-      .insert(messages)
-      .values({
+  .handler(async ({ input }) => {
+    const { data, error } = await supabase
+      .from("guestbook_messages")
+      .insert({
         body: input.message,
-        userId: user.id,
+        user_id: "anonymous",
+        user_name: "Anonymous",
+        user_image: null,
       })
-      .returning()
+      .select()
+      .single()
 
-    if (!message) {
-      throw new ORPCError('INTERNAL_SERVER_ERROR', {
-        message: 'Failed to create message',
-      })
+    if (error) throw new ORPCError("INTERNAL_SERVER_ERROR", { message: error.message })
+    return {
+      id: data.id,
+      body: data.body,
+      createdAt: data.created_at,
+      userId: data.user_id,
     }
-
-    if (IS_PRODUCTION) {
-      await sendGuestbookNotification(input.message, user.name, user.image ?? getDefaultImage(user.id))
-    }
-
-    return message
   })
 
-const deleteMessage = protectedProcedure
+const deleteMessage = publicProcedure
   .input(DeleteMessageInputSchema)
   .output(EmptyOutputSchema)
-  .handler(async ({ input, context }) => {
-    const { user } = context.session
+  .handler(async ({ input }) => {
+    const { error } = await supabase
+      .from("guestbook_messages")
+      .delete()
+      .eq("id", input.id)
 
-    const message = await context.db.query.messages.findFirst({
-      where: and(eq(messages.id, input.id), eq(messages.userId, user.id)),
-    })
-
-    if (!message) {
-      throw new ORPCError('NOT_FOUND', {
-        message: 'Message not found',
-      })
-    }
-
-    await context.db.delete(messages).where(eq(messages.id, input.id))
+    if (error) throw new ORPCError("INTERNAL_SERVER_ERROR", { message: error.message })
   })
 
 export const messageRouter = {

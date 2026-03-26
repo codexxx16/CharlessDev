@@ -20,58 +20,27 @@ export const env = createEnv({
   server: {
     NEXT_RUNTIME: z.enum(['nodejs', 'edge']).default('nodejs'),
 
-    // Required
-    DATABASE_URL: z.url(),
-
-    UPSTASH_REDIS_REST_URL: z.url(),
-    UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
-
-    IP_ADDRESS_SALT: z.string().min(1),
-
-    BETTER_AUTH_SECRET: z.string().min(1),
+    // Supabase service role (server-side only)
+    SUPABASE_SERVICE_ROLE_KEY: z.string().min(1).optional(),
 
     // Optional
-    SPOTIFY_CLIENT_ID: z.string().min(1).optional(),
-    SPOTIFY_CLIENT_SECRET: z.string().min(1).optional(),
-    SPOTIFY_REFRESH_TOKEN: z.string().min(1).optional(),
-
-    GOOGLE_API_KEY: z.string().min(1).optional(),
     GITHUB_TOKEN: z.string().min(1).optional(),
-    WAKATIME_API_KEY: z.string().min(1).optional(),
-
-    GOOGLE_CLIENT_ID: z.string().min(1).optional(),
-    GOOGLE_CLIENT_SECRET: z.string().min(1).optional(),
-    GITHUB_CLIENT_ID: z.string().min(1).optional(),
-    GITHUB_CLIENT_SECRET: z.string().min(1).optional(),
-
-    NELSONLAI_API_KEY: z.string().min(1).optional(),
-
     DISCORD_WEBHOOK_URL: z.url().optional(),
-
-    RESEND_API_KEY: z.string().min(1).optional(),
-    AUTHOR_EMAIL: z.email().optional(),
-    JWT_SECRET: z.string().min(1).optional(),
-
-    CLOUDFLARE_R2_ENDPOINT: z.url().optional(),
-    CLOUDFLARE_R2_ACCESS_KEY_ID: z.string().min(1).optional(),
-    CLOUDFLARE_R2_SECRET_ACCESS_KEY: z.string().min(1).optional(),
-    CLOUDFLARE_R2_BUCKET_NAME: z.string().min(1).optional(),
-    CLOUDFLARE_R2_PUBLIC_URL: z.url().optional(),
-
     POSTHOG_ENV_ID: z.string().min(1).optional(),
     POSTHOG_API_KEY: z.string().min(1).optional(),
   },
 
   client: {
-    // Required
-    NEXT_PUBLIC_SITE_URL: z.url(),
+    // Supabase public keys
+    NEXT_PUBLIC_SUPABASE_URL: z.url().optional(),
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1).optional(),
+
     // Optional
+    NEXT_PUBLIC_SITE_URL: z.url().optional(),
     NEXT_PUBLIC_VERCEL_ENV: z.string().optional(),
     NEXT_PUBLIC_VERCEL_BRANCH_URL: z.string().optional(),
-
     NEXT_PUBLIC_UMAMI_URL: z.url().optional(),
-    NEXT_PUBLIC_UMAMI_WEBSITE_ID: z.uuid().optional(),
-
+    NEXT_PUBLIC_UMAMI_WEBSITE_ID: z.string().optional(),
     NEXT_PUBLIC_POSTHOG_KEY: z.string().min(1).optional(),
     NEXT_PUBLIC_POSTHOG_HOST: z.string().min(1).optional(),
   },
@@ -81,13 +50,13 @@ export const env = createEnv({
     CI: process.env.CI,
     IS_TEST: process.env.IS_TEST,
 
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
     NEXT_PUBLIC_VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV,
     NEXT_PUBLIC_VERCEL_BRANCH_URL: process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL,
-
     NEXT_PUBLIC_UMAMI_URL: process.env.NEXT_PUBLIC_UMAMI_URL,
     NEXT_PUBLIC_UMAMI_WEBSITE_ID: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
-
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
     NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
   },

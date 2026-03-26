@@ -9,7 +9,6 @@ import { useInView } from 'react-intersection-observer'
 import { UserAvatar } from '@/components/ui/user-avatar'
 import { useListMessages } from '@/hooks/queries/message.query'
 import { useFormattedDate } from '@/hooks/use-formatted-date'
-import { useSession } from '@/lib/auth-client'
 
 import { DeleteButton } from './delete-button'
 import { MessagesLoader } from './messages-loader'

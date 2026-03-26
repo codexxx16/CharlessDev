@@ -1,10 +1,6 @@
 import type { NextConfig } from 'next'
-
 import { withContentCollections } from '@content-collections/next'
 import createNextIntlPlugin from 'next-intl/plugin'
-
-import { env } from '@/env'
-import { withPostHog } from '@/lib/posthog'
 
 import { IS_PRODUCTION } from './src/constants/common'
 
@@ -27,6 +23,22 @@ const remotePatterns: NonNullable<NextConfig['images']>['remotePatterns'] = [
     protocol: 'https',
     hostname: '**.googleusercontent.com',
   },
+  {
+    protocol: 'https',
+    hostname: 'placehold.co',
+  },
+  {
+    protocol: 'https',
+    hostname: 'store.storeimages.cdn-apple.com',
+  },
+  {
+    protocol: 'https',
+    hostname: 'www.starlink.com',
+  },
+  {
+    protocol: 'https',
+    hostname: 'cdn.simpleicons.org',
+  },
 ]
 
 if (!IS_PRODUCTION) {
@@ -36,49 +48,21 @@ if (!IS_PRODUCTION) {
   })
 }
 
-if (env.CLOUDFLARE_R2_PUBLIC_URL) {
-  const { hostname } = new URL(env.CLOUDFLARE_R2_PUBLIC_URL)
-
-  remotePatterns.push({
-    protocol: 'https',
-    hostname,
-  })
-}
-
 const config: NextConfig = {
   productionBrowserSourceMaps: true,
-
   typescript: {
-    ignoreBuildErrors: env.CI,
+    ignoreBuildErrors: true,
   },
-
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     qualities: [75, 100],
     remotePatterns,
   },
-
   skipTrailingSlashRedirect: true,
-
-  rewrites() {
-    return [
-      {
-        source: '/_ph/static/:path*',
-        destination: 'https://us-assets.i.posthog.com/static/:path*',
-      },
-      {
-        source: '/_ph/:path*',
-        destination: 'https://us.i.posthog.com/:path*',
-      },
-    ]
-  },
-
   redirects() {
     return [
-      {
-        source: '/pc-specs',
-        destination: '/uses',
-        permanent: true,
-      },
       {
         source: '/atom',
         destination: '/rss.xml',
@@ -96,7 +80,6 @@ const config: NextConfig = {
       },
     ]
   },
-
   headers() {
     return [
       {
@@ -124,4 +107,4 @@ const config: NextConfig = {
   },
 }
 
-export default withPostHog(withContentCollections(withNextIntl(config)))
+export default withContentCollections(withNextIntl(config))

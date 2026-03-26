@@ -47,10 +47,10 @@ export function LocationCard() {
       baseColor: [0.8, 0.8, 0.8],
       markerColor: [1, 1, 1],
       glowColor: [0.5, 0.5, 0.5],
-      markers: [{ location: [22.3193, 114.1694], size: 0.1 }],
+      markers: [{ location: [-17.8252, 31.0335], size: 0.1 }],
       scale: 1.05,
       onRender: (state) => {
-        state.phi = 2.75 + springRotation.get() // oxlint-disable-line react-x/immutability
+        state.phi = 5.5 + springRotation.get() // oxlint-disable-line react-x/immutability
         state.width = width * 2 // oxlint-disable-line react-x/immutability
         state.height = width * 2 // oxlint-disable-line react-x/immutability
       },

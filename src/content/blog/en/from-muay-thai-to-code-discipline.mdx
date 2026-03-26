@@ -1,0 +1,76 @@
+---
+title: From Muay Thai to Code — Discipline as a Developer
+date: '2025-02-20T00:00:00Z'
+modifiedTime: '2025-03-01T00:00:00Z'
+summary: What six years of martial arts training taught me about becoming a better software engineer — and why the parallels are deeper than you think.
+---
+
+## The Unexpected Connection
+
+When people find out I train Muay Thai and Boxing alongside building software, they usually expect me to say something like "it helps me de-stress." That's true, but it misses the deeper connection.
+
+Martial arts and software engineering are both **disciplines of iteration**. You don't become good at either through talent alone. You become good through thousands of repetitions, honest feedback loops, and the willingness to be a beginner again and again.
+
+## Repetition Builds Intuition
+
+In Muay Thai, you throw the same kick ten thousand times until it becomes automatic. Your body stops thinking and starts reacting. The technique is internalized.
+
+In programming, the same principle applies. When I was learning React, I built the same todo app five different ways — with useState, useReducer, Zustand, Redux, and Jotai. Not because I needed five todo apps, but because repetition builds intuition. Now I can look at a state management problem and immediately feel which tool fits.
+
+```typescript
+// The first time you write this, you think carefully about every word
+const [count, setCount] = useState(0)
+
+// After the ten-thousandth time, your hands just type it
+// The cognitive load is gone — you're thinking about the actual problem
+```
+
+## Embracing the Beginner's Mind
+
+Every time I step into a gym with better fighters, I get humbled. I get hit. I make mistakes I thought I'd stopped making. And then I learn.
+
+This is the **beginner's mind** — the ability to approach even familiar territory with openness and curiosity. It's what separates developers who plateau from those who keep growing.
+
+When I started learning Rust after years of TypeScript, I felt like a beginner again. The borrow checker rejected code that felt perfectly reasonable to me. I was frustrated. But I kept the same mindset I bring to sparring: *what is this teaching me?*
+
+```rust
+// This doesn't compile — and Rust is right
+fn get_first(v: &Vec<String>) -> &String {
+    &v[0]
+}
+
+// You have to think about lifetimes
+fn get_first<'a>(v: &'a Vec<String>) -> &'a String {
+    &v[0]
+}
+```
+
+The borrow checker wasn't being difficult. It was teaching me to think about memory ownership in a way I'd never had to before. That's a gift.
+
+## Pressure Testing
+
+In boxing, you can know every technique perfectly in training and still fall apart in sparring. The pressure of a real opponent exposes gaps you didn't know existed.
+
+Code reviews and production incidents are the sparring sessions of software engineering. You can write beautiful code in isolation, but when it hits production — when real users find the edge cases, when the database is under load, when the network is unreliable — that's when you find out what you actually know.
+
+I've learned to seek out pressure testing rather than avoid it:
+
+- Deploy to production early, even when it's not perfect
+- Ask for code reviews from people more experienced than me
+- Write tests that simulate failure conditions, not just happy paths
+
+## Recovery and Rest
+
+One of the hardest lessons in martial arts is that rest is training. Overtraining leads to injury, burnout, and regression. The best athletes periodize their training — hard weeks followed by recovery weeks.
+
+Developers burn out. I've done it. The signs are the same as overtraining: you stop enjoying the work, your output quality drops, you make careless mistakes.
+
+Now I treat rest as part of the process. I take weekends off from personal projects. I go to the gym. I play games. I watch movies. And when I come back to the keyboard, I'm sharper.
+
+## The Long Game
+
+Martial arts is a lifelong practice. There's no finish line. A black belt isn't the end — it's the beginning of deeper study.
+
+Software engineering is the same. There's always a new paradigm, a new language, a new problem domain. The developers I admire most aren't the ones who know the most — they're the ones who are still genuinely curious after twenty years.
+
+Train hard. Rest well. Stay curious. The rest follows.

@@ -1,0 +1,251 @@
+---
+title: Building AI-Powered Apps with the OpenAI API in 2025
+date: '2025-03-05T00:00:00Z'
+modifiedTime: '2025-03-20T00:00:00Z'
+summary: A practical guide to integrating OpenAI's API into production Next.js applications — streaming, function calling, RAG patterns, and lessons from real deployments.
+---
+
+## The State of AI in 2025
+
+The AI landscape has matured significantly. We're past the "ChatGPT wrapper" era. Real AI-powered applications now need to handle streaming responses, tool use, retrieval-augmented generation (RAG), and multi-modal inputs — all while keeping costs manageable and latency acceptable.
+
+This post covers what I've learned building AI features into production applications.
+
+## Streaming Responses
+
+The single most important UX improvement for AI applications is streaming. Nobody wants to stare at a loading spinner for 10 seconds. Show the response as it generates.
+
+```typescript title='app/api/chat/route.ts'
+import { OpenAI } from 'openai'
+import { NextRequest } from 'next/server'
+
+const openai = new OpenAI()
+
+export async function POST(request: NextRequest) {
+  const { messages } = await request.json()
+
+  const stream = await openai.chat.completions.create({
+    model: 'gpt-4o',
+    messages,
+    stream: true,
+  })
+
+  const encoder = new TextEncoder()
+  const readable = new ReadableStream({
+    async start(controller) {
+      for await (const chunk of stream) {
+        const text = chunk.choices[0]?.delta?.content ?? ''
+        if (text) {
+          controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text })}\n\n`))
+        }
+      }
+      controller.enqueue(encoder.encode('data: [DONE]\n\n'))
+      controller.close()
+    },
+  })
+
+  return new Response(readable, {
+    headers: {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      Connection: 'keep-alive',
+    },
+  })
+}
+```
+
+On the client side:
+
+```typescript title='hooks/useChat.ts'
+export function useChat() {
+  const [response, setResponse] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+
+  async function sendMessage(messages: Message[]) {
+    setIsLoading(true)
+    setResponse('')
+
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages }),
+    })
+
+    const reader = res.body!.getReader()
+    const decoder = new TextDecoder()
+
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+
+      const lines = decoder.decode(value).split('\n')
+      for (const line of lines) {
+        if (line.startsWith('data: ') && line !== 'data: [DONE]') {
+          const { text } = JSON.parse(line.slice(6))
+          setResponse((prev) => prev + text)
+        }
+      }
+    }
+
+    setIsLoading(false)
+  }
+
+  return { response, isLoading, sendMessage }
+}
+```
+
+## Function Calling (Tool Use)
+
+Function calling is what separates toy demos from real applications. It lets the model decide when to call external tools — databases, APIs, calculators — and integrate the results into its response.
+
+```typescript title='lib/ai-tools.ts'
+import { OpenAI } from 'openai'
+
+const openai = new OpenAI()
+
+const tools: OpenAI.Chat.ChatCompletionTool[] = [
+  {
+    type: 'function',
+    function: {
+      name: 'get_transaction_status',
+      description: 'Get the current status of a payment transaction',
+      parameters: {
+        type: 'object',
+        properties: {
+          reference: {
+            type: 'string',
+            description: 'The transaction reference number',
+          },
+        },
+        required: ['reference'],
+      },
+    },
+  },
+]
+
+async function getTransactionStatus(reference: string) {
+  // Fetch from your database
+  const transaction = await db.transactions.findUnique({ where: { reference } })
+  return transaction
+}
+
+export async function runAgentLoop(userMessage: string) {
+  const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [
+    { role: 'user', content: userMessage },
+  ]
+
+  while (true) {
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4o',
+      messages,
+      tools,
+    })
+
+    const message = response.choices[0].message
+    messages.push(message)
+
+    if (message.finish_reason === 'stop') {
+      return message.content
+    }
+
+    if (message.tool_calls) {
+      for (const toolCall of message.tool_calls) {
+        const args = JSON.parse(toolCall.function.arguments)
+        let result
+
+        if (toolCall.function.name === 'get_transaction_status') {
+          result = await getTransactionStatus(args.reference)
+        }
+
+        messages.push({
+          role: 'tool',
+          tool_call_id: toolCall.id,
+          content: JSON.stringify(result),
+        })
+      }
+    }
+  }
+}
+```
+
+## RAG: Retrieval-Augmented Generation
+
+For domain-specific knowledge, RAG is essential. Instead of fine-tuning (expensive and slow), you retrieve relevant context from your own data and inject it into the prompt.
+
+```typescript title='lib/rag.ts'
+import { OpenAI } from 'openai'
+import { createClient } from '@supabase/supabase-js'
+
+const openai = new OpenAI()
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+)
+
+async function getEmbedding(text: string): Promise<number[]> {
+  const response = await openai.embeddings.create({
+    model: 'text-embedding-3-small',
+    input: text,
+  })
+  return response.data[0].embedding
+}
+
+export async function ragQuery(question: string): Promise<string> {
+  // 1. Embed the question
+  const queryEmbedding = await getEmbedding(question)
+
+  // 2. Find similar documents using pgvector
+  const { data: documents } = await supabase.rpc('match_documents', {
+    query_embedding: queryEmbedding,
+    match_threshold: 0.78,
+    match_count: 5,
+  })
+
+  // 3. Build context from retrieved documents
+  const context = documents
+    .map((doc: { content: string }) => doc.content)
+    .join('\n\n')
+
+  // 4. Generate answer with context
+  const response = await openai.chat.completions.create({
+    model: 'gpt-4o',
+    messages: [
+      {
+        role: 'system',
+        content: `Answer questions based on the provided context. If the context doesn't contain the answer, say so.\n\nContext:\n${context}`,
+      },
+      { role: 'user', content: question },
+    ],
+  })
+
+  return response.choices[0].message.content ?? ''
+}
+```
+
+## Cost Management
+
+AI API costs can spiral quickly. Here's how I keep them in check:
+
+1. **Cache embeddings** — embeddings don't change for the same text, so cache them in your database
+2. **Use smaller models for simple tasks** — `gpt-4o-mini` is 15x cheaper than `gpt-4o` and handles most tasks fine
+3. **Implement token budgets** — set `max_tokens` on every request
+4. **Monitor usage** — set up alerts when daily spend exceeds a threshold
+
+```typescript title='lib/cost-aware-ai.ts'
+export async function smartComplete(prompt: string, complexity: 'low' | 'high' = 'low') {
+  const model = complexity === 'high' ? 'gpt-4o' : 'gpt-4o-mini'
+  const maxTokens = complexity === 'high' ? 2000 : 500
+
+  return openai.chat.completions.create({
+    model,
+    max_tokens: maxTokens,
+    messages: [{ role: 'user', content: prompt }],
+  })
+}
+```
+
+## What's Next
+
+The most exciting frontier right now is **multi-modal AI** — models that can see, hear, and reason across modalities. I'm currently experimenting with vision capabilities for document processing in the fintech space: automatically extracting data from bank statements, receipts, and ID documents.
+
+The tools are powerful. The key is building systems around them that are reliable, cost-effective, and genuinely useful to the people who use them.

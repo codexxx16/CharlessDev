@@ -7,13 +7,13 @@ function Footer() {
       <Section>
         <Row className='mt-4' align='left' width='auto'>
           <Column className='pr-6 align-middle'>
-            <Link href='https://x.com/nelsonlaidev' className='text-xl text-black'>
-              <Img src='https://nelsonlai.dev/images/email/x.png' alt='X' width={22} height={22} />
+            <Link href='https://x.com/CharlessDev' className='text-xl text-black'>
+              <Img src='https://charlessdev.vercel.app/images/email/x.png' alt='X' width={22} height={22} />
             </Link>
           </Column>
           <Column className='align-middle'>
-            <Link href='https://github.com/nelsonlaidev/nelsonlai.dev' className='text-xl text-black'>
-              <Img src='https://nelsonlai.dev/images/email/github.png' alt='GitHub' width={22} height={22} />
+            <Link href='https://github.com/codexxx16/CharlessDev' className='text-xl text-black'>
+              <Img src='https://charlessdev.vercel.app/images/email/github.png' alt='GitHub' width={22} height={22} />
             </Link>
           </Column>
         </Row>

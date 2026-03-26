@@ -1,9 +1,7 @@
 'use client'
-
-import { CodeIcon, CommandIcon, LinkIcon, LogInIcon, LogOutIcon, ShieldIcon, UserCircleIcon } from 'lucide-react'
+import { CodeIcon, CommandIcon, LinkIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Fragment, useEffect, useState } from 'react'
-
 import { Button } from '@/components/ui/button'
 import {
   Command,
@@ -17,10 +15,6 @@ import {
 } from '@/components/ui/command'
 import { SOCIAL_LINKS } from '@/constants/navigation'
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
-import { useSignInDialog } from '@/hooks/use-sign-in-dialog'
-import { useSignOut } from '@/hooks/use-sign-out'
-import { useRouter } from '@/i18n/routing'
-import { useSession } from '@/lib/auth-client'
 
 type CommandAction = {
   title: string
@@ -36,11 +30,7 @@ type CommandGroup = {
 export function CommandMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const [copy] = useCopyToClipboard()
-  const { data: session } = useSession()
   const t = useTranslations()
-  const { openDialog } = useSignInDialog()
-  const router = useRouter()
-  const signOut = useSignOut({ redirectTo: '/' })
 
   function closeMenu() {
     setIsOpen(false)
@@ -64,27 +54,6 @@ export function CommandMenu() {
     await copy({ text: globalThis.location.href })
   }
 
-  function handleAccountNavigate() {
-    closeMenu()
-    router.push('/account')
-  }
-
-  function handleAdminNavigate() {
-    closeMenu()
-    router.push('/admin')
-  }
-
-  function handleSignIn() {
-    closeMenu()
-    openDialog()
-  }
-
-  async function handleSignOut() {
-    closeMenu()
-
-    await signOut()
-  }
-
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
@@ -92,43 +61,11 @@ export function CommandMenu() {
         toggleMenu()
       }
     }
-
     document.addEventListener('keydown', handleKeyDown)
-
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
   }, [])
-
-  const accountActions: CommandAction[] = session
-    ? [
-        {
-          title: t('common.labels.account'),
-          icon: <UserCircleIcon />,
-          handleSelect: handleAccountNavigate,
-        },
-        ...(session.user.role === 'admin'
-          ? [
-              {
-                title: 'Admin',
-                icon: <ShieldIcon />,
-                handleSelect: handleAdminNavigate,
-              },
-            ]
-          : []),
-        {
-          title: t('common.sign-out'),
-          icon: <LogOutIcon />,
-          handleSelect: handleSignOut,
-        },
-      ]
-    : [
-        {
-          title: t('common.sign-in'),
-          icon: <LogInIcon />,
-          handleSelect: handleSignIn,
-        },
-      ]
 
   const generalActions: CommandAction[] = [
     {
@@ -140,7 +77,7 @@ export function CommandMenu() {
       title: t('command-menu.actions.source-code'),
       icon: <CodeIcon />,
       handleSelect: () => {
-        openExternalLink('https://github.com/nelsonlaidev/nelsonlai.dev')
+        openExternalLink('https://github.com/codexxx16/CharlessDev')
       },
     },
   ]
@@ -154,7 +91,6 @@ export function CommandMenu() {
   }))
 
   const groups: CommandGroup[] = [
-    { name: t('common.labels.account'), actions: accountActions },
     { name: t('common.labels.general'), actions: generalActions },
     { name: t('command-menu.groups.social'), actions: socialActions },
   ]

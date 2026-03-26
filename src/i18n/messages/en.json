@@ -1,6 +1,6 @@
 {
   "about": {
-    "description": "Hi! I'm Nelson Lai, a passionate web development student creating innovative projects with HTML, CSS, and JavaScript. Explore my portfolio, skills, and journey in building user-friendly apps. Let's connect!"
+    "description": "I'm Charless Netumbare, a Full Stack Developer and AI Engineer from Masvingo, Zimbabwe. I build secure fintech solutions, explore AI, and bridge the gap between physical discipline and digital innovation."
   },
   "account": {
     "account-created": "Account created",
@@ -82,7 +82,7 @@
       "toggle-strikethrough": "Toggle strikethrough",
       "write": "Write"
     },
-    "description": "Discover my website and blog, where I share tutorials, notes, and experiences as a full-stack engineer based in Hong Kong. I began web dev as a hobby in Dec 2020. Explore my journey!",
+    "description": "Thoughts, tutorials, and experiences from a Full Stack Developer and AI Engineer building from Masvingo, Zimbabwe.",
     "footer": {
       "edit-on-github": "Edit on GitHub",
       "last-updated": "Last updated: {date}"
@@ -135,13 +135,11 @@
       "comment": "Comment",
       "comments": "Comments",
       "dashboard": "Dashboard",
-      "facebook": "Facebook",
       "general": "General",
       "github": "GitHub",
       "guestbook": "Guestbook",
       "home": "Home",
-      "instagram": "Instagram",
-      "links": "Links",
+      "linkedin": "LinkedIn",
       "privacy": "Privacy Policy",
       "projects": "Projects",
       "settings": "Settings",
@@ -191,21 +189,24 @@
     }
   },
   "dashboard": {
-    "description": "This is my personal dashboard, built with Next.js API routes deployed as serverless functions. I use this dashboard to track various stats across platforms like YouTube, GitHub, and more.",
+    "description": "My personal dashboard — live stats aggregated from GitHub, YouTube, and this blog.",
     "stat": {
       "blog-total-likes": "Blog Total Likes",
       "blog-total-views": "Blog Total Views",
-      "coding-hours": "Coding Hours",
+      "coding-hours": "Hours Coding",
       "github-followers": "GitHub Followers",
-      "github-stars": "GitHub Stars",
+      "github-projects": "GitHub Projects",
       "youtube-subscribers": "YouTube Subscribers",
-      "youtube-views": "YouTube Views"
+      "youtube-views": "YouTube Views",
+      "hours-gaming": "Hours Gaming / Month",
+      "hours-spotify": "Hours Spotify",
+      "hours-netflix": "Hours Netflix"
     }
   },
   "dialog": {
     "sign-in": {
       "continue-with": "Continue with {provider}",
-      "description": "to continue to nelsonlai.dev",
+      "description": "to continue to charlessdev.vercel.app",
       "last-used": "Last used",
       "notice": "By continuing, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>"
     }
@@ -237,11 +238,11 @@
     "try-again": "Try again"
   },
   "guestbook": {
-    "description": "Sign my guestbook and share your idea. You can tell me anything here!",
-    "no-messages": "No messages. Be the first to leave a message!",
+    "description": "Leave a message, quote, or note. I'd love to hear from you!",
+    "no-messages": "No messages yet. Be the first to leave one!",
     "pinned": {
-      "description": "Thanks for visiting my website. If you have a moment, I'd love to hear your thoughts on my work. Please log in with your account to leave a comment. Thanks!",
-      "greeting": "Hey there! 👋"
+      "description": "Thanks for visiting. Feel free to leave a message, a quote, or just say hello. No account required.",
+      "greeting": "Hey there!"
     },
     "placeholder": "Leave a message",
     "signin": {
@@ -254,27 +255,27 @@
       "coding-hours": "Coding hours",
       "connect": "Connect",
       "fav-framework": "Fav. framework",
-      "location": "Hong Kong",
+      "location": "Masvingo, Zimbabwe",
       "more": "Know more about me",
       "stacks": "Stacks",
       "title": "About Me"
     },
     "get-in-touch": {
       "description": "Feel free to reach out to me!",
-      "image-alt": "Nelson Lai's Logo",
-      "title": "Any questions about Next.js?"
+      "image-alt": "Charless Netumbare",
+      "title": "Want to build something together?"
     },
     "hero": {
-      "amazing": "Amazing",
-      "attractive": "Attractive",
-      "fantastic": "Fantastic",
-      "location-timezone": "Hong Kong • UTC/GMT +8",
-      "stunning": "Stunning",
-      "line-1": "I'm Nelson, a Full Stack Engineer",
+      "amazing": "Secure",
+      "attractive": "Scalable",
+      "fantastic": "Intelligent",
+      "location-timezone": "Masvingo, Zimbabwe \u2022 UTC+2",
+      "stunning": "Innovative",
+      "line-1": "I'm Charless, a Full Stack Developer and AI Engineer",
       "line-2-left": "building",
-      "line-2-right": "websites using",
-      "line-3": "React",
-      "image-alt": "Nelson Lai's Logo"
+      "line-2-right": "digital solutions",
+      "line-3": "for the world",
+      "image-alt": "Charless Netumbare"
     },
     "latest-articles": {
       "card": "Article",
@@ -304,13 +305,13 @@
     "link-to-section": "Link to section"
   },
   "metadata": {
-    "site-description": "Nelson Lai is a full stack engineer based in Hong Kong. He builds performant and elegant websites using React, Node.js, and modern technologies."
+    "site-description": "Charless Netumbare (CharlessDev) is a Full Stack Developer and AI Engineer from Masvingo, Zimbabwe. Building secure fintech solutions and exploring AI."
   },
   "privacy": {
     "description": "This page explains how we handle your data and protect your privacy when you use our website."
   },
   "projects": {
-    "description": "A collection of my projects, crafted with dedication.",
+    "description": "A collection of projects I have built — from fintech ecosystems to AI assistants.",
     "visit-website": "Visit Website"
   },
   "settings": {
@@ -334,7 +335,7 @@
     "signed-out": "Signed out successfully"
   },
   "terms": {
-    "description": "These terms and conditions outline the rules and regulations for the use our website."
+    "description": "These terms and conditions outline the rules and regulations for the use of this website."
   },
   "theme-toggle": {
     "options": {
@@ -354,6 +355,6 @@
     "you-have-been-unsubscribed": "You've been unsubscribed"
   },
   "uses": {
-    "description": "This is the equipment I currently use for gaming, programming, making videos, and every day."
+    "description": "The hardware, software, and tools I use daily for development, design, and productivity."
   }
 }

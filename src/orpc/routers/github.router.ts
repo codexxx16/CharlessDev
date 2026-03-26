@@ -11,17 +11,13 @@ const getStats = publicProcedure.output(GithubStatsOutputSchema).handler(async (
   const cached = await cache.github.get(CACHE_KEY)
   if (cached) return cached
 
-  const [repos, { data: user }, { data: repo }] = await Promise.all([
+  const [repos, { data: user }] = await Promise.all([
     octokit.paginate('GET /users/{username}/repos', {
       username: GITHUB_USERNAME,
       per_page: 100,
     }),
     octokit.request('GET /users/{username}', {
       username: GITHUB_USERNAME,
-    }),
-    octokit.request('GET /repos/{owner}/{repo}', {
-      owner: GITHUB_USERNAME,
-      repo: 'nelsonlai.dev',
     }),
   ])
 
@@ -30,7 +26,8 @@ const getStats = publicProcedure.output(GithubStatsOutputSchema).handler(async (
   const result = {
     stars,
     followers: user.followers,
-    repoStars: repo.stargazers_count,
+    publicRepos: user.public_repos,
+    repoStars: stars,
   }
 
   await cache.github.set(CACHE_KEY, result)

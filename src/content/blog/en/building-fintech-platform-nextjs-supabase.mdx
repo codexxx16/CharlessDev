@@ -1,0 +1,148 @@
+---
+title: Building a Fintech Platform with Next.js and Supabase
+date: '2025-01-15T00:00:00Z'
+modifiedTime: '2025-03-10T00:00:00Z'
+summary: A deep dive into how I built a production-grade fintech platform for Zimbabwe's mobile money ecosystem using Next.js, Supabase, and EcoCash/OneMoney integrations.
+---
+
+## Why Fintech in Zimbabwe
+
+Zimbabwe's financial landscape is unique. With hyperinflation history and limited traditional banking penetration, mobile money has become the backbone of everyday transactions. EcoCash alone processes billions of dollars annually. But the developer tooling around these systems is fragmented, poorly documented, and often inaccessible.
+
+I built this platform to bridge that gap — a unified fintech API layer that abstracts over EcoCash, OneMoney, and Zimswitch, giving developers a clean interface to build financial applications.
+
+## The Architecture
+
+The platform is built on three pillars:
+
+1. **Next.js App Router** for the frontend and API routes
+2. **Supabase** for authentication, database, and real-time features
+3. **Edge Functions** for low-latency payment processing
+
+```typescript title='lib/payment.ts'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+)
+
+export async function initiatePayment(params: {
+  amount: number
+  currency: 'USD' | 'ZWL'
+  provider: 'ecocash' | 'onemoney' | 'zimswitch'
+  phoneNumber: string
+  reference: string
+}) {
+  const { data, error } = await supabase
+    .from('transactions')
+    .insert({
+      amount: params.amount,
+      currency: params.currency,
+      provider: params.provider,
+      phone_number: params.phoneNumber,
+      reference: params.reference,
+      status: 'pending',
+    })
+    .select()
+    .single()
+
+  if (error) throw new Error(error.message)
+  return data
+}
+```
+
+## Handling Mobile Money Webhooks
+
+One of the trickiest parts was handling webhooks from mobile money providers. They're not standardized — each provider sends different payload shapes, uses different authentication methods, and has different retry policies.
+
+```typescript title='app/api/webhooks/ecocash/route.ts'
+import { NextRequest, NextResponse } from 'next/server'
+import { verifyEcoCashSignature } from '@/lib/ecocash'
+import { updateTransactionStatus } from '@/lib/transactions'
+
+export async function POST(request: NextRequest) {
+  const body = await request.text()
+  const signature = request.headers.get('x-ecocash-signature')
+
+  if (!verifyEcoCashSignature(body, signature)) {
+    return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
+  }
+
+  const payload = JSON.parse(body)
+  
+  await updateTransactionStatus({
+    reference: payload.merchantReference,
+    status: payload.transactionStatus === 'SUCCESS' ? 'completed' : 'failed',
+    providerReference: payload.transactionId,
+  })
+
+  return NextResponse.json({ received: true })
+}
+```
+
+## Real-time Transaction Monitoring
+
+Using Supabase's real-time subscriptions, I built a live transaction dashboard that updates instantly when payment statuses change:
+
+```typescript title='hooks/useTransactions.ts'
+import { useEffect, useState } from 'react'
+import { createClient } from '@supabase/supabase-js'
+
+export function useTransactions(merchantId: string) {
+  const [transactions, setTransactions] = useState([])
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
+
+  useEffect(() => {
+    const channel = supabase
+      .channel('transactions')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'transactions',
+          filter: `merchant_id=eq.${merchantId}`,
+        },
+        (payload) => {
+          setTransactions((prev) => {
+            if (payload.eventType === 'INSERT') return [payload.new, ...prev]
+            if (payload.eventType === 'UPDATE') {
+              return prev.map((t) => (t.id === payload.new.id ? payload.new : t))
+            }
+            return prev
+          })
+        }
+      )
+      .subscribe()
+
+    return () => supabase.removeChannel(channel)
+  }, [merchantId, supabase])
+
+  return transactions
+}
+```
+
+## Security Considerations
+
+Fintech demands security-first thinking. Here are the key measures I implemented:
+
+- **Row Level Security (RLS)** on all Supabase tables — merchants can only see their own transactions
+- **Webhook signature verification** for all incoming payment notifications
+- **Rate limiting** on payment initiation endpoints using Upstash Redis
+- **Audit logging** for every state change in the transaction lifecycle
+- **PCI-DSS aligned** data handling — no raw card data ever touches our servers
+
+## Lessons Learned
+
+Building fintech in Zimbabwe taught me things no tutorial covers:
+
+1. **Network reliability matters** — implement exponential backoff and idempotency keys
+2. **Currency handling is hard** — use integer arithmetic for money, never floats
+3. **Regulatory compliance** — understand RBZ (Reserve Bank of Zimbabwe) requirements early
+4. **Test with real money** — sandbox environments don't capture all edge cases
+
+The platform is now processing real transactions. It's the most technically and ethically demanding thing I've built — and the most rewarding.

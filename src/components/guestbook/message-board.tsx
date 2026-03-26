@@ -1,19 +1,13 @@
-'use client'
-
-import { useSession } from '@/lib/auth-client'
-
+"use client"
 import { MessageBox } from './message-box'
 import { Messages } from './messages'
 import { Pinned } from './pinned'
-import { SignIn } from './sign-in'
 
 export function MessageBoard() {
-  const { data: session } = useSession()
-
   return (
-    <div className='mx-auto max-w-xl space-y-10'>
+    <div className="mx-auto max-w-xl space-y-10">
       <Pinned />
-      {session ? <MessageBox user={session.user} /> : <SignIn />}
+      <MessageBox user={null} />
       <Messages />
     </div>
   )

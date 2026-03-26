@@ -1,12 +1,15 @@
-export const SITE_GITHUB_URL = 'https://github.com/nelsonlaidev'
-export const SITE_FACEBOOK_URL = 'https://www.facebook.com/nelsonlaidev'
-export const SITE_INSTAGRAM_URL = 'https://www.instagram.com/nelsonlaidev'
-export const SITE_X_URL = 'https://x.com/nelsonlaidev'
-export const SITE_YOUTUBE_URL = 'https://www.youtube.com/@nelsonlaidev'
+export const SITE_GITHUB_URL = 'https://github.com/codexxx16'
+export const SITE_LINKEDIN_URL = 'https://linkedin.com' // placeholder, to be added later
+export const SITE_X_URL = 'https://x.com/CharlessDev' // placeholder
+export const SITE_YOUTUBE_URL = 'https://www.youtube.com/@CharlessDev' // placeholder
 
-export const GITHUB_USERNAME = 'nelsonlaidev'
+export const GITHUB_USERNAME = 'codexxx16'
 
-export const MY_NAME = 'Nelson Lai'
+export const MY_NAME = 'Charless Netumbare'
+export const MY_EMAIL = 'codexxxnull@gmail.com'
+export const MY_HANDLE = 'CharlessDev'
+export const MY_TAGLINE =
+  'Building secure fintech solutions, exploring AI, and bridging the gap between physical discipline and digital innovation.'
 
 export const OG_IMAGE_WIDTH = 1200
 export const OG_IMAGE_HEIGHT = 630
