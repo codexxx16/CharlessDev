@@ -2,7 +2,7 @@
 
 > Personal portfolio, blog, and dashboard of Charless Netumbare — Full Stack Developer & AI Engineer from Masvingo, Zimbabwe.
 
-**Live:** [charlessdev.vercel.app](https://charlessdev.vercel.app)
+**Live:** [charless-dev.vercel.app](https://charless-dev.vercel.app)
 
 ## Stack
 
