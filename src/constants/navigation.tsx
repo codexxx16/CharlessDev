@@ -1,6 +1,9 @@
-import { SiGithub, SiLinkedin, SiX, SiYoutube } from '@icons-pack/react-simple-icons'
 import {
   BarChartIcon,
+  GithubIcon,
+  LinkedinIcon,
+  TwitterIcon,
+  YoutubeIcon,
   FlameIcon,
   MessageCircleIcon,
   MonitorIcon,
