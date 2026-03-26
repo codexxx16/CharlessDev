@@ -98,21 +98,21 @@ export const SOCIAL_LINKS = [
   {
     href: SITE_GITHUB_URL,
     title: 'GitHub',
-    icon: <SiGithub />,
+    icon: <GithubIcon className="size-4" />,
   },
   {
     href: SITE_LINKEDIN_URL,
     title: 'LinkedIn',
-    icon: <SiLinkedin />,
+    icon: <LinkedinIcon className="size-4" />,
   },
   {
     href: SITE_X_URL,
     title: 'X',
-    icon: <SiX />,
+    icon: <TwitterIcon className="size-4" />,
   },
   {
     href: SITE_YOUTUBE_URL,
     title: 'YouTube',
-    icon: <SiYoutube />,
+    icon: <YoutubeIcon className="size-4" />,
   },
 ] as const
