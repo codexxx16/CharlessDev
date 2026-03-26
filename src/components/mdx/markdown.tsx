@@ -4,8 +4,7 @@ import { Fragment, memo } from 'react'
 import { Link } from '@/components/ui/link'
 import { TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
-import { CommentCodeBlock } from '../comment-section/comment-code-block'
-import { CommentTable } from '../comment-section/comment-table'
+
 
 type MarkdownProps = {
   children: string
@@ -20,8 +19,7 @@ export const Markdown = memo((props: MarkdownProps) => {
         options={{
           overrides: {
             a: Link,
-            pre: CommentCodeBlock,
-            table: CommentTable,
+
             thead: TableHeader,
             tr: TableRow,
             th: TableHead,

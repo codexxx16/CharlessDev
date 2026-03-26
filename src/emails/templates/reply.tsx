@@ -81,9 +81,7 @@ function ReplyEmailTemplate(props: ReplyEmailTemplateProps) {
               View Reply
             </Button>
             <Text className='text-xs text-gray-500'>
-              You received this because you enabled notifications for replies to your comments. If you wish to stop
-              receiving these emails, please update your{' '}
-              <Link href='https://charlessdev.vercel.app/account/settings'>account settings</Link>. To stop receiving reply
+              You received this because you enabled notifications for replies to your comments. To stop receiving reply
               notifications for this specific comment, you can <Link href={unsubscribeUrl}>unsubscribe</Link>.
             </Text>
             <Footer />

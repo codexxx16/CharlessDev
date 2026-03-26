@@ -12,7 +12,7 @@ import { LikeButton } from '@/components/blog/like-button'
 import { MobileTableOfContents } from '@/components/blog/mobile-table-of-contents'
 import { ProgressBar } from '@/components/blog/progress-bar'
 import { TableOfContents } from '@/components/blog/table-of-contents'
-import { CommentSection } from '@/components/comment-section'
+
 import { JsonLd } from '@/components/json-ld'
 import { Mdx } from '@/components/mdx'
 import { MY_NAME } from '@/constants/site'
@@ -112,9 +112,7 @@ function Page(props: PageProps<'/[locale]/blog/[slug]'>) {
       {post.toc.length > 0 && <MobileTableOfContents toc={post.toc} />}
       <BlogFooter post={post} />
 
-      <Suspense>
-        <CommentSection slug={slug} />
-      </Suspense>
+
     </>
   )
 }

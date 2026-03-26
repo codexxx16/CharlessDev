@@ -1,6 +1,6 @@
 import { allPages, allPosts, allProjects } from 'content-collections'
 
-export const PROTECTED_ROUTES = ['/admin', '/account', '/account/settings']
+export const PROTECTED_ROUTES: string[] = []
 
 type GetPathnamesOptions = {
   includeProtectedRoutes?: boolean
