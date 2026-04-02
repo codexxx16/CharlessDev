@@ -1,4 +1,4 @@
-import { SiGithub, SiLinkedin } from '@icons-pack/react-simple-icons'
+import { SiGithub } from '@icons-pack/react-simple-icons'
 import {
   BarChartIcon,
   FlameIcon,
@@ -122,9 +122,5 @@ export const SOCIAL_LINKS = [
     title: 'Email',
     icon: <MailIcon />,
   },
-  {
-    href: '#',
-    title: 'LinkedIn',
-    icon: <SiLinkedin />,
-  },
+
 ] as const

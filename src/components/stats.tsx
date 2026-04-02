@@ -47,7 +47,7 @@ export function Stats() {
     },
     {
       title: 'Hours Gaming per Month',
-      link: '#',
+      link: '/dashboard',
       value: 34,
       icon: <GamepadIcon className='size-6 text-[#ffaa00]' />,
       linkText: 'Gaming',
@@ -59,7 +59,7 @@ export function Stats() {
     },
     {
       title: 'Hours Spotify',
-      link: '#',
+      link: '/dashboard',
       value: 1257,
       icon: <SiSpotify className='text-[#1DB954]' />,
       linkText: 'Spotify',
@@ -71,7 +71,7 @@ export function Stats() {
     },
     {
       title: 'Hours Netflix',
-      link: '#',
+      link: '/dashboard',
       value: 300,
       icon: <SiNetflix className='text-[#E50914]' />,
       linkText: 'Netflix',
@@ -127,7 +127,7 @@ export function Stats() {
     },
     {
       title: t('dashboard.stat.blog-total-views'),
-      link: 'https://charlessdev.vercel.app',
+      link: '/dashboard',
       value: viewsQuery.data?.views,
       icon: <PencilIcon className='size-6 text-[#ff0f7b]' />,
       linkText: 'Blog',
@@ -138,7 +138,7 @@ export function Stats() {
     },
     {
       title: t('dashboard.stat.blog-total-likes'),
-      link: 'https://charlessdev.vercel.app',
+      link: '/dashboard',
       value: likesQuery.data?.likes,
       icon: <PencilIcon className='size-6 text-[#ff0f7b]' />,
       linkText: 'Blog',
