@@ -28,7 +28,7 @@ export async function GET(_request: Request, props: RouteContext<'/[locale]/rss.
     language: locale,
     image_url: getLocalizedPath({ locale, pathname: '/og/image.webp' }),
     copyright: `© ${new Date().getFullYear()} ${MY_NAME}. All rights reserved.`,
-    webMaster: 'me@nelsonlai.dev',
+    webMaster: 'codexxxnull@gmail.com',
   })
 
   const posts = getAllPostsByLocale(locale)

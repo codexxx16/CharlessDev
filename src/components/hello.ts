@@ -13,7 +13,7 @@ export function Hello() {
 
 If you're digging this code, check out my GitHub repo:
 
-https://github.com/nelsonlaidev/nelsonlai.dev
+https://github.com/codexxx16/charlessdev.vercel.app
 
 and give it a star ⭐
 `,

@@ -20,15 +20,15 @@ function AvatarSizes() {
     <DemoItem title='Sizes' orientation='vertical'>
       <div className='flex flex-wrap items-center gap-2'>
         <Avatar size='sm'>
-          <AvatarImage src='https://github.com/nelsonlaidev.png' alt='@nelsonlaidev' />
+          <AvatarImage src='https://github.com/codexxx16.png' alt='@codexxx16' />
           <AvatarFallback>NL</AvatarFallback>
         </Avatar>
         <Avatar>
-          <AvatarImage src='https://github.com/nelsonlaidev.png' alt='@nelsonlaidev' />
+          <AvatarImage src='https://github.com/codexxx16.png' alt='@codexxx16' />
           <AvatarFallback>NL</AvatarFallback>
         </Avatar>
         <Avatar size='lg'>
-          <AvatarImage src='https://github.com/nelsonlaidev.png' alt='@nelsonlaidev' />
+          <AvatarImage src='https://github.com/codexxx16.png' alt='@codexxx16' />
           <AvatarFallback>NL</AvatarFallback>
         </Avatar>
       </div>

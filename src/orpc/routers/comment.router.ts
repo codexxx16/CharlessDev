@@ -116,7 +116,7 @@ const createComment = protectedProcedure
     const commenterName = user.name
     const commenterImage = user.image ?? getDefaultImage(user.id)
     const postTitle = post.title
-    const postUrl = `https://nelsonlai.dev/blog/${input.slug}`
+    const postUrl = `https://charlessdev.vercel.app/blog/${input.slug}`
 
     const comment = await context.db.transaction(async (tx) => {
       const [c] = await tx
@@ -198,7 +198,7 @@ const createComment = protectedProcedure
               date: c.createdAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
               postTitle,
               postUrl,
-              unsubscribeUrl: `https://nelsonlai.dev/unsubscribe?token=${token}`,
+              unsubscribeUrl: `https://charlessdev.vercel.app/unsubscribe?token=${token}`,
             }),
           })
         }

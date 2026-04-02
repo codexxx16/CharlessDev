@@ -1,4 +1,4 @@
-import { defineConfig } from '@nelsonlaidev/oxlint-config'
+import { defineConfig } from '@codexxx16/oxlint-config'
 
 export default defineConfig(
   {

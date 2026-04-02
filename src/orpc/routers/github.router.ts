@@ -21,7 +21,7 @@ const getStats = publicProcedure.output(GithubStatsOutputSchema).handler(async (
     }),
     octokit.request('GET /repos/{owner}/{repo}', {
       owner: GITHUB_USERNAME,
-      repo: 'nelsonlai.dev',
+      repo: 'charlessdev.vercel.app',
     }),
   ])
 
