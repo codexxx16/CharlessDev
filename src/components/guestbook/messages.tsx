@@ -1,74 +1,65 @@
 'use client'
 
-import type { MessageListOutput } from '@/orpc/client'
-
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import { UserAvatar } from '@/components/ui/user-avatar'
-import { useListMessages } from '@/hooks/queries/message.query'
 import { useFormattedDate } from '@/hooks/use-formatted-date'
-import { useSession } from '@/lib/auth-client'
+import { useListMessages } from '@/hooks/queries/message.query'
+import { UserAvatar } from '@/components/ui/user-avatar'
 
-import { DeleteButton } from './delete-button'
 import { MessagesLoader } from './messages-loader'
 
 export function Messages() {
-  const { data, isSuccess, isLoading, isError, fetchNextPage, hasNextPage, isFetchingNextPage } = useListMessages()
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useListMessages()
+  const { ref, inView } = useInView()
   const t = useTranslations()
 
-  const { ref, inView } = useInView()
-
   useEffect(() => {
-    if (inView && hasNextPage) void fetchNextPage()
-  }, [fetchNextPage, hasNextPage, inView])
+    if (inView && hasNextPage) {
+      void fetchNextPage()
+    }
+  }, [inView, fetchNextPage, hasNextPage])
 
-  const noMessages = isSuccess && data.pages.every((page) => page.messages.length === 0)
+  if (status === 'pending') {
+    return <MessagesLoader />
+  }
+
+  if (status === 'error') {
+    return <div className='text-center text-muted-foreground'>{t('error.failed-to-load-messages')}</div>
+  }
+
+  const messages = data?.pages.flatMap((page) => page.messages) ?? []
+
+  if (messages.length === 0) {
+    return <div className='text-center text-muted-foreground'>{t('guestbook.no-messages')}</div>
+  }
 
   return (
-    <div className='flex flex-col gap-4' data-testid='guestbook-messages-list'>
-      {isSuccess &&
-        data.pages.map((page) => page.messages.map((message) => <Message key={message.id} message={message} />))}
-      {(isLoading || isFetchingNextPage) && <MessagesLoader />}
-      <span ref={ref} className='invisible' />
-      {isError && (
-        <div className='flex min-h-24 items-center justify-center'>
-          <p className='text-sm text-muted-foreground'>{t('error.failed-to-load-messages')}</p>
-        </div>
-      )}
-      {noMessages && (
-        <div className='flex min-h-24 items-center justify-center'>
-          <p className='text-sm text-muted-foreground'>{t('guestbook.no-messages')}</p>
-        </div>
-      )}
+    <div className='space-y-8'>
+      {messages.map((message) => (
+        <MessageItem key={message.id} message={message} />
+      ))}
+      <div ref={ref}>{isFetchingNextPage && <MessagesLoader />}</div>
     </div>
   )
 }
 
-type MessageProps = {
-  message: MessageListOutput['messages'][number]
-}
-
-function Message(props: MessageProps) {
-  const { message } = props
-  const { data: session } = useSession()
-
-  const isAuthor = message.userId === session?.user.id
-
-  const formattedDate = useFormattedDate(message.createdAt, { formatName: 'long' })
+function MessageItem({ message }: { message: any }) {
+  const date = useFormattedDate(message.createdAt, { formatName: 'long' })
 
   return (
-    <div className='rounded-xl border p-4' data-testid={`message-${message.id}`}>
-      <div className='mb-3 flex gap-3'>
-        <UserAvatar id={message.userId} name={message.user.name} image={message.user.image} size='lg' />
-        <div className='flex flex-col justify-center gap-px text-sm'>
-          <div>{message.user.name}</div>
-          <div className='text-xs text-muted-foreground'>{formattedDate ?? '--'}</div>
+    <div className='flex gap-3 rounded-xl border p-4'>
+      <UserAvatar id={message.user.id} name={message.user.name} image={message.user.image} size='lg' />
+      <div className='flex w-full flex-col gap-1'>
+        <div className='flex items-center justify-between'>
+          <div className='flex items-center gap-2'>
+            <div className='text-sm font-semibold'>{message.user.name}</div>
+            <div className='text-xs text-muted-foreground'>{date ?? '--'}</div>
+          </div>
         </div>
+        <div className='break-words text-sm text-muted-foreground'>{message.body}</div>
       </div>
-      <div className='pl-13 wrap-break-word'>{message.body}</div>
-      {isAuthor && <DeleteButton message={message} />}
     </div>
   )
 }
