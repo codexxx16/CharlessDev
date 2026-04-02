@@ -1,8 +1,7 @@
-// Inspired by: https://fig.io
 'use client'
 
-import { SiGithub, SiWakatime, SiYoutube } from '@icons-pack/react-simple-icons'
-import { ArrowRightIcon, PencilIcon, StarIcon } from 'lucide-react'
+import { SiGithub, SiSpotify, SiNetflix, SiYoutube } from '@icons-pack/react-simple-icons'
+import { ArrowRightIcon, PencilIcon, CodeIcon, GamepadIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 import { Counter } from '@/components/counter'
@@ -11,8 +10,6 @@ import {
   useGithubStats,
   useLikeStats,
   useViewStats,
-  useWakatimeStats,
-  useYoutubeStats,
 } from '@/hooks/queries/stats.query'
 
 type Card = {
@@ -29,21 +26,19 @@ type Card = {
 }
 
 export function Stats() {
-  const youtubeQuery = useYoutubeStats()
   const githubQuery = useGithubStats()
   const likesQuery = useLikeStats()
   const viewsQuery = useViewStats()
-  const wakatimeQuery = useWakatimeStats()
 
   const t = useTranslations()
 
   const data: Card[] = [
     {
       title: t('dashboard.stat.coding-hours'),
-      link: 'https://wakatime.com/@codexxx16',
-      value: wakatimeQuery.data?.hours,
-      icon: <SiWakatime className='text-[#0061ff]' />,
-      linkText: 'WakaTime',
+      link: 'https://github.com/codexxx16',
+      value: 6264,
+      icon: <CodeIcon className='size-6 text-[#0061ff]' />,
+      linkText: 'Coding',
       gradient: {
         startColor: '#0061ff',
         endColor: '#6f7bf7',
@@ -51,9 +46,45 @@ export function Stats() {
       suffix: 'hrs',
     },
     {
+      title: 'Hours Gaming per Month',
+      link: '#',
+      value: 34,
+      icon: <GamepadIcon className='size-6 text-[#ffaa00]' />,
+      linkText: 'Gaming',
+      gradient: {
+        startColor: '#ffaa00',
+        endColor: '#ffcc00',
+      },
+      suffix: 'hrs',
+    },
+    {
+      title: 'Hours Spotify',
+      link: '#',
+      value: 1257,
+      icon: <SiSpotify className='text-[#1DB954]' />,
+      linkText: 'Spotify',
+      gradient: {
+        startColor: '#1DB954',
+        endColor: '#1ed760',
+      },
+      suffix: 'hrs',
+    },
+    {
+      title: 'Hours Netflix',
+      link: '#',
+      value: 300,
+      icon: <SiNetflix className='text-[#E50914]' />,
+      linkText: 'Netflix',
+      gradient: {
+        startColor: '#E50914',
+        endColor: '#ff1f1f',
+      },
+      suffix: 'hrs',
+    },
+    {
       title: t('dashboard.stat.youtube-subscribers'),
       link: 'https://www.youtube.com/@codexxx16',
-      value: youtubeQuery.data?.subscribers,
+      value: 0,
       icon: <SiYoutube className='text-[#ff0000]' />,
       linkText: 'YouTube',
       gradient: {
@@ -64,7 +95,7 @@ export function Stats() {
     {
       title: t('dashboard.stat.youtube-views'),
       link: 'https://www.youtube.com/@codexxx16',
-      value: youtubeQuery.data?.views,
+      value: 0,
       icon: <SiYoutube className='text-[#ff0000]' />,
       linkText: 'YouTube',
       gradient: {
@@ -84,10 +115,10 @@ export function Stats() {
       },
     },
     {
-      title: t('dashboard.stat.github-stars'),
+      title: 'GitHub Repositories',
       link: 'https://github.com/codexxx16',
-      value: githubQuery.data?.stars,
-      icon: <StarIcon className='size-6 text-[#fee000]' />,
+      value: githubQuery.data?.public_repos,
+      icon: <SiGithub className='text-[#fee000]' />,
       linkText: 'GitHub',
       gradient: {
         startColor: '#fee000',

@@ -21,7 +21,7 @@ const getStats = publicProcedure.output(GithubStatsOutputSchema).handler(async (
     }),
     octokit.request('GET /repos/{owner}/{repo}', {
       owner: GITHUB_USERNAME,
-      repo: 'charlessdev.vercel.app',
+      repo: 'CharlessDev',
     }),
   ])
 
@@ -31,6 +31,7 @@ const getStats = publicProcedure.output(GithubStatsOutputSchema).handler(async (
     stars,
     followers: user.followers,
     repoStars: repo.stargazers_count,
+    public_repos: user.public_repos,
   }
 
   await cache.github.set(CACHE_KEY, result)

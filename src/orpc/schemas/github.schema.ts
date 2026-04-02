@@ -4,4 +4,5 @@ export const GithubStatsOutputSchema = z.object({
   stars: z.number(),
   followers: z.number(),
   repoStars: z.number(),
+  public_repos: z.number(),
 })
