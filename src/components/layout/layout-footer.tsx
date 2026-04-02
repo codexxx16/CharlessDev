@@ -34,7 +34,7 @@ export function LayoutFooter() {
         <LocaleSwitcher />
         <div className='flex items-center justify-between text-sm'>
           {/* oxlint-disable-next-line react-x/purity */}
-          <div className='text-muted-foreground'>&copy; {new Date().getFullYear()} Charless Netumbare</div>
+          <div className='text-muted-foreground'>&copy; 2026 Charless Netumbare</div>
           <GithubStarButton />
         </div>
       </div>
