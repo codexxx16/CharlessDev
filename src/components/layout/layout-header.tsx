@@ -54,7 +54,7 @@ export function LayoutHeader() {
   return (
     <header
       ref={headerRef}
-      className='fixed inset-x-0 top-4 z-40 mx-auto flex h-15 max-w-5xl items-center justify-between rounded-2xl bg-background/30 px-8 shadow-xs backdrop-blur-md transition-colors data-[scrolled=true]:bg-background/80'
+      className='fixed inset-x-2 top-4 z-40 mx-auto flex h-15 max-w-5xl items-center justify-between rounded-2xl bg-background/30 px-4 shadow-xs backdrop-blur-md transition-colors data-[scrolled=true]:bg-background/80 sm:inset-x-0 sm:px-8'
     >
       <SkipNav />
       <Link href='/' aria-label={t('common.labels.home')}>
