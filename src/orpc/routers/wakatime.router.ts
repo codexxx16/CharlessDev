@@ -21,26 +21,30 @@ const getStats = publicProcedure.output(WakatimeStatsOutputSchema).handler(async
     }
   }
 
-  const response = await fetch('https://wakatime.com/api/v1/users/current/all_time_since_today', {
-    headers: {
-      Authorization: `Basic ${Buffer.from(env.WAKATIME_API_KEY).toString('base64')}`,
-    },
-  })
-
-  if (!response.ok) {
-    const body = await response.text()
-    throw new TraceableError('WakaTime API error', {
-      status: response.status,
-      statusText: response.statusText,
-      body,
+  try {
+    const response = await fetch('https://wakatime.com/api/v1/users/current/all_time_since_today', {
+      headers: {
+        Authorization: `Basic ${Buffer.from(env.WAKATIME_API_KEY).toString('base64')}`,
+      },
     })
-  }
 
-  const rawData = await response.json()
-  const { data } = WakatimeResponseSchema.parse(rawData)
+    if (!response.ok) {
+      return {
+        hours: 0,
+      }
+    }
 
-  return {
-    hours: Math.round(data.total_seconds / 60 / 60),
+    const rawData = await response.json()
+    const { data } = WakatimeResponseSchema.parse(rawData)
+
+    return {
+      hours: Math.round(data.total_seconds / 60 / 60),
+    }
+  } catch (error) {
+    console.error('WakaTime API error:', error)
+    return {
+      hours: 0,
+    }
   }
 })
 

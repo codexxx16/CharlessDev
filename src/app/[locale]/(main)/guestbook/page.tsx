@@ -4,7 +4,7 @@ import type { WebPage, WithContext } from 'schema-dts'
 
 import { useTranslations } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { use } from 'react'
+import { Suspense, use } from 'react'
 
 import { MessageBoard } from '@/components/guestbook/message-board'
 import { JsonLd } from '@/components/json-ld'
@@ -59,7 +59,9 @@ function Page(props: PageProps<'/[locale]/guestbook'>) {
     <>
       <JsonLd json={jsonLd} />
       <PageHeader title={title} description={description} />
-      <MessageBoard />
+      <Suspense fallback={null}>
+        <MessageBoard />
+      </Suspense>
     </>
   )
 }

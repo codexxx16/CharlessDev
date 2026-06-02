@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { Link } from '@/components/ui/link'
@@ -12,6 +13,11 @@ export function NowPlaying(props: NowPlayingProps) {
   const { className, ...rest } = props
   const { data, isSuccess, isLoading, isError } = useSpotifyStats()
   const t = useTranslations()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const isPlaying = isSuccess && data.isPlaying
   const notPlaying = isSuccess && !data.isPlaying
@@ -24,14 +30,15 @@ export function NowPlaying(props: NowPlayingProps) {
       </svg>
 
       <p className='flex-1'>
-        {isPlaying && (
+        {!mounted || isLoading ? (
+          t('layout.now-playing.loading')
+        ) : isPlaying ? (
           <Link href={data.songUrl}>
             {data.name} - {data.artist}
           </Link>
+        ) : (
+          t('layout.now-playing.not-listening')
         )}
-        {notPlaying && t('layout.now-playing.not-listening')}
-        {isLoading && t('layout.now-playing.loading')}
-        {isError && t('error.now-playing-error')}
       </p>
     </div>
   )

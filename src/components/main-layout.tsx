@@ -10,7 +10,7 @@ export function MainLayout(props: MainLayoutProps) {
   const { children } = props
 
   return (
-    <>
+    <div className='relative flex min-h-screen flex-col overflow-x-hidden'>
       <LayoutHeader />
       <main
         id='main-content'
@@ -22,6 +22,6 @@ export function MainLayout(props: MainLayoutProps) {
       <LayoutFooter />
       <GradientBackground />
       <GradientBackground position='bottom' />
-    </>
+    </div>
   )
 }

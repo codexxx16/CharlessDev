@@ -33,62 +33,53 @@ const getStats = publicProcedure.output(SpotifyStatsOutputSchema).handler(async 
     return EMPTY_RESPONSE
   }
 
-  const tokenResponse = await fetch(TOKEN_ENDPOINT, {
-    method: 'POST',
-    headers: {
-      Authorization: `Basic ${BASIC}`,
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams({
-      grant_type: 'refresh_token',
-      refresh_token: REFRESH_TOKEN,
-    }),
-  })
-
-  if (!tokenResponse.ok) {
-    const body = await tokenResponse.text()
-    throw new TraceableError('Spotify token API error', {
-      status: tokenResponse.status,
-      statusText: tokenResponse.statusText,
-      body,
+  try {
+    const tokenResponse = await fetch(TOKEN_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        Authorization: `Basic ${BASIC}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        grant_type: 'refresh_token',
+        refresh_token: REFRESH_TOKEN,
+      }),
     })
-  }
 
-  const { access_token } = AccessTokenResponseSchema.parse(await tokenResponse.json())
+    if (!tokenResponse.ok) {
+      return EMPTY_RESPONSE
+    }
 
-  const nowPlayingResponse = await fetch(NOW_PLAYING_ENDPOINT, {
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-    },
-  })
+    const { access_token } = AccessTokenResponseSchema.parse(await tokenResponse.json())
 
-  if (nowPlayingResponse.status === 204) {
-    return EMPTY_RESPONSE
-  }
-
-  if (!nowPlayingResponse.ok) {
-    const body = await nowPlayingResponse.text()
-    throw new TraceableError('Spotify now playing API error', {
-      status: nowPlayingResponse.status,
-      statusText: nowPlayingResponse.statusText,
-      body,
+    const nowPlayingResponse = await fetch(NOW_PLAYING_ENDPOINT, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
     })
-  }
 
-  const song = NowPlayingResponseSchema.parse(await nowPlayingResponse.json())
+    if (nowPlayingResponse.status === 204 || !nowPlayingResponse.ok) {
+      return EMPTY_RESPONSE
+    }
 
-  // If the song is not playing or is not a track, return an empty response
-  if (song.item?.type !== 'track') {
+    const song = NowPlayingResponseSchema.parse(await nowPlayingResponse.json())
+
+    // If the song is not playing or is not a track, return an empty response
+    if (song.item?.type !== 'track') {
+      return EMPTY_RESPONSE
+    }
+
+    const artists = song.item.artists.map((artist) => artist.name).join(', ')
+
+    return {
+      isPlaying: song.is_playing,
+      songUrl: song.item.external_urls.spotify,
+      name: song.item.name,
+      artist: artists,
+    }
+  } catch (error) {
+    console.error('Spotify API error:', error)
     return EMPTY_RESPONSE
-  }
-
-  const artists = song.item.artists.map((artist) => artist.name).join(', ')
-
-  return {
-    isPlaying: song.is_playing,
-    songUrl: song.item.external_urls.spotify,
-    name: song.item.name,
-    artist: artists,
   }
 })
 
