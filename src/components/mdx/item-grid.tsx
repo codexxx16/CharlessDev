@@ -31,6 +31,7 @@ export function ItemGrid(props: ItemGridProps) {
             alt={item.name}
             className="shrink-0"
             imageClassName="m-0 size-24 object-contain sm:size-28"
+            lazy={false}
           />
           <div className="min-w-0 space-y-2">
             <div className="text-lg font-semibold leading-tight tracking-tight sm:text-xl">
