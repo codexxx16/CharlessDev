@@ -56,6 +56,7 @@ const projects = defineCollection({
     homepage: z.string().optional(),
     github: z.string(),
     techstack: z.array(z.string()),
+    image: z.string().optional(),
     selected: z.boolean().optional().default(false),
     dateCreated: z.string(),
     content: z.string(),

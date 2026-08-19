@@ -1,13 +1,11 @@
 'use client'
 
-import type { DecoratorProps } from 'react-cosmos-core'
-
 import { MoonIcon, SunIcon } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
 import { Button } from './ui/button'
 
-function Decorator(props: DecoratorProps) {
+function Decorator(props: { children: React.ReactNode }) {
   const { children } = props
   const { resolvedTheme, setTheme } = useTheme()
 
