@@ -1,3 +1,5 @@
+import type { Project } from 'content-collections'
+
 import { LightbulbIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 

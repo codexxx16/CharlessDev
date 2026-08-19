@@ -57,7 +57,8 @@ function Page(props: PageProps<'/[locale]/projects/[slug]'>) {
     notFound()
   }
 
-  const { name, code, description, github, dateCreated } = project
+  const { name, code, description, github, dateCreated, image } = project
+  const projectImage = image ?? `/images/projects/${slug}/cover.png`
   const baseUrl = getBaseUrl()
 
   const jsonLd: WithContext<SoftwareSourceCode> = {
@@ -75,7 +76,7 @@ function Page(props: PageProps<'/[locale]/projects/[slug]'>) {
       name: MY_NAME,
       url: baseUrl,
     },
-    thumbnailUrl: `${baseUrl}/images/projects/${slug}/cover.png`,
+    thumbnailUrl: `${baseUrl}${projectImage}`,
     inLanguage: locale,
   }
 
@@ -85,7 +86,7 @@ function Page(props: PageProps<'/[locale]/projects/[slug]'>) {
       <div className='mx-auto max-w-3xl'>
         <ProjectHeader {...project} />
         <BlurImage
-          src={`/images/projects/${slug}/cover.png`}
+          src={projectImage}
           width={1200}
           height={630}
           alt={name}
