@@ -14,14 +14,27 @@ type ProjectCardProps = {
 export function ProjectCard(props: ProjectCardProps) {
   const { project, featured = false, lazy = true } = props
   const t = useTranslations()
+  const initials = project.name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join('')
+    .toUpperCase()
 
   return (
     <ContentCard
       key={project.slug}
       href={`/projects/${project.slug}`}
       title={t('homepage.selected-projects.card')}
-      image={`/images/projects/${project.slug}/cover.png`}
-      imageAlt={project.description}
+      image={project.image}
+      imageAlt={project.description || project.name}
+      imageFallback={
+        <div className='flex aspect-[1200/630] items-center justify-center bg-muted text-4xl font-semibold text-muted-foreground'>
+          <span aria-hidden='true'>{initials || '?'}</span>
+          <span className='sr-only'>{project.name} thumbnail unavailable</span>
+        </div>
+      }
       icon={<LightbulbIcon className='size-4.5' />}
       featured={featured}
       lazy={lazy}

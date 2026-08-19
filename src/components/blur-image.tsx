@@ -13,11 +13,25 @@ import { cn } from '@/utils/cn'
 type ImageProps = {
   imageClassName?: string
   lazy?: boolean
+  fallback?: React.ReactNode
 } & React.ComponentProps<typeof NextImage>
 
 export function BlurImage(props: ImageProps) {
-  const { alt, src, className, imageClassName, lazy = true, ...rest } = props
+  const { alt, src, className, imageClassName, lazy = true, fallback, ...rest } = props
   const [isLoading, setIsLoading] = useState(true)
+  const [hasError, setHasError] = useState(false)
+
+  if (hasError) {
+    return (
+      <div className={cn('group overflow-hidden', className)} role='img' aria-label={alt}>
+        {fallback ?? (
+          <span className='flex aspect-[1200/630] items-center justify-center bg-muted text-sm text-muted-foreground'>
+            Image unavailable
+          </span>
+        )}
+      </div>
+    )
+  }
 
   return (
     <div data-loading={isLoading} className={cn('group overflow-hidden data-[loading=true]:animate-pulse', className)}>
@@ -36,6 +50,10 @@ export function BlurImage(props: ImageProps) {
         quality={100}
         onLoad={() => {
           setIsLoading(false)
+        }}
+        onError={() => {
+          setIsLoading(false)
+          setHasError(true)
         }}
         {...rest}
       />
