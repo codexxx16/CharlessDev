@@ -1,19 +1,19 @@
 # Project links to confirm
 
-The portfolio currently contains the following project homepage values. Please replace any placeholder or incorrect entry with the verified live URL before the final CV is published.
+The connected Vercel account was checked. Public-ready projects use their canonical Vercel domains; ZimFlix and ZimConnect remain marked for internal testing; and projects without a clear matching deployment use a portfolio case-study fallback until the user completes a cross-check.
 
-| Project                          | Currently recorded URL                | Confirmation needed          |
-| -------------------------------- | ------------------------------------- | ---------------------------- |
-| Auto-Trader                      | https://tradingrobotstore.vercel.app/ | Confirm or replace           |
-| 69ELPGas LPG Platform            | https://charlessdev.vercel.app        | Provide verified project URL |
-| Lara — nemm AI Assistant         | https://t.me/Lara_nemm_bot            | Confirm                      |
-| Masvingo TechHub                 | https://charless-dev.vercel.app       | Confirm or replace           |
-| nemm Technologies Website        | https://nemm-co.vercel.app            | Confirm                      |
-| Purple Team Detection Lab        | https://charless-dev.vercel.app       | Confirm or replace           |
-| School Records Management System | https://charlessdev.vercel.app        | Provide verified project URL |
-| Surefire AI                      | https://charlessdev.vercel.app        | Provide verified project URL |
-| ZimBlog                          | https://charless-dev.vercel.app       | Confirm or replace           |
-| ZimConnect Community Platform    | https://charlessdev.vercel.app        | Provide verified project URL |
-| ZimFlix                          | https://charless-dev.vercel.app       | Confirm or replace           |
+| Project                          | Current CV and website destination                                 | Status                                                              |
+| -------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| Auto-Trader                      | https://tradingrobotstore.vercel.app                               | Public deployment found                                             |
+| 69ELPGas LPG Platform            | https://69-elp-gas.vercel.app                                      | Public deployment found                                             |
+| Lara — nemm AI Assistant         | https://t.me/Lara_nemm_bot                                         | Telegram destination; Vercel deployments are blocked/error          |
+| Masvingo TechHub                 | https://masvingo-techhub-zw.vercel.app                             | Public deployment found                                             |
+| nemm Technologies Website        | https://charless-dev.vercel.app/projects/nemm-website              | Portfolio fallback; matching Vercel project not found               |
+| Purple Team Detection Lab        | https://charless-dev.vercel.app/projects/purple-team-detection-lab | Portfolio case-study fallback; separate Vercel deployment not found |
+| School Records Management System | https://shongamiti-high-school.vercel.app                          | Public deployment found                                             |
+| Surefire AI                      | https://s4-analyzer.vercel.app                                     | Public deployment candidate found                                   |
+| ZimBlog                          | https://zim-trendz-blog-zw.vercel.app                              | Public deployment found                                             |
+| ZimConnect Community Platform    | https://charless-dev.vercel.app/projects/zimconnect                | Internal testing; public release deferred                           |
+| ZimFlix                          | https://charless-dev.vercel.app/projects/zimflix                   | Internal testing; public release deferred                           |
 
-The current My CV page and PDF use these values as a draft only. The final version should use the verified URLs supplied by Charless.
+These destinations are a working release candidate. Replace any entry later if the user’s cross-check identifies a more accurate URL or a new public deployment.

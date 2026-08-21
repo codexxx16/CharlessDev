@@ -73,7 +73,7 @@ Full Stack Developer and AI Engineer from Masvingo, Zimbabwe, focused on buildin
   name: "Purple Team Detection Lab",
   role: "Detection Engineering and Cybersecurity",
   dates: dates-helper(start-date: "2026", end-date: "Present"),
-  url: "https://charless-dev.vercel.app",
+  url: "https://charless-dev.vercel.app/projects/purple-team-detection-lab",
 )
 - Isolated malware-research lab validating detections for PowerShell execution and LSASS credential dumping.
 - Used Atomic Red Team emulation, Security Onion, Sigma rules, and Sysmon; lab testing achieved a 0% false-positive rate.
@@ -82,7 +82,7 @@ Full Stack Developer and AI Engineer from Masvingo, Zimbabwe, focused on buildin
   name: "Masvingo TechHub",
   role: "Full Stack Developer",
   dates: dates-helper(start-date: "2026", end-date: "Present"),
-  url: "https://charless-dev.vercel.app",
+  url: "https://masvingo-techhub-zw.vercel.app",
 )
 - Community and resource hub connecting technology enthusiasts and developers in Masvingo with opportunities, events, and learning resources.
 - Technologies: Next.js, community platforms, Zimbabwe-focused EdTech.
@@ -91,7 +91,7 @@ Full Stack Developer and AI Engineer from Masvingo, Zimbabwe, focused on buildin
   name: "ZimBlog",
   role: "Full Stack Developer | Client Project",
   dates: dates-helper(start-date: "2026", end-date: "Present"),
-  url: "https://charless-dev.vercel.app",
+  url: "https://zim-trendz-blog-zw.vercel.app",
 )
 - News aggregation and blogging platform with editorial presentation, category filtering, and fast content delivery.
 - Technologies: Next.js, media, blogging, client work.
@@ -100,25 +100,25 @@ Full Stack Developer and AI Engineer from Masvingo, Zimbabwe, focused on buildin
   name: "ZimFlix",
   role: "Full Stack Developer",
   dates: dates-helper(start-date: "2026", end-date: "Present"),
-  url: "https://charless-dev.vercel.app",
+  url: "https://charless-dev.vercel.app/projects/zimflix",
 )
-- Streaming and content-discovery platform designed for the Zimbabwean market with locally relevant organization and a performance-focused interface.
+- Streaming and content-discovery platform designed for the Zimbabwean market with locally relevant organization and a performance-focused interface. The public release is currently reserved for internal testing.
 - Technologies: Next.js, React, streaming platforms.
 
 #project(
   name: "ZimConnect Community Platform",
   role: "Full Stack Developer",
   dates: dates-helper(start-date: "2024", end-date: "Present"),
-  url: "https://charlessdev.vercel.app",
+  url: "https://charless-dev.vercel.app/projects/zimconnect",
 )
-- Community platform evolved from a simple chat room into a broader social product for connection, sharing, and engagement.
+- Community platform evolved from a simple chat room into a broader social product for connection, sharing, and engagement. The current deployment is reserved for internal testing.
 - Technologies: Next.js, community platforms, social features.
 
 #project(
   name: "School Records Management System",
   role: "Full Stack Developer",
   dates: dates-helper(start-date: "2024", end-date: "Present"),
-  url: "https://charlessdev.vercel.app",
+  url: "https://shongamiti-high-school.vercel.app",
 )
 - Desktop and web system for schools featuring license management, student records, and local payment integration.
 - Designed to support recurring revenue from educational institutions.
@@ -127,7 +127,7 @@ Full Stack Developer and AI Engineer from Masvingo, Zimbabwe, focused on buildin
   name: "Surefire AI",
   role: "AI Product Developer",
   dates: dates-helper(start-date: "2024", end-date: "Present"),
-  url: "https://charlessdev.vercel.app",
+  url: "https://s4-analyzer.vercel.app",
 )
 - Chart-analysis application for professional traders using Claude Vision and GPT-4 to support visual market analysis.
 - Currently in pre-launch development ahead of a planned Play Store release.
@@ -144,7 +144,7 @@ Full Stack Developer and AI Engineer from Masvingo, Zimbabwe, focused on buildin
   name: "69ELPGas LPG Platform",
   role: "Full Stack Developer",
   dates: dates-helper(start-date: "2024", end-date: "Present"),
-  url: "https://charlessdev.vercel.app",
+  url: "https://69-elp-gas.vercel.app",
 )
 - LPG platform focused on product presentation, ordering, and service information for a local business context.
 
@@ -152,7 +152,7 @@ Full Stack Developer and AI Engineer from Masvingo, Zimbabwe, focused on buildin
   name: "nemm Technologies Website",
   role: "Full Stack Developer | Brand Website",
   dates: dates-helper(start-date: "2024", end-date: "Present"),
-  url: "https://nemm-co.vercel.app",
+  url: "https://charless-dev.vercel.app/projects/nemm-website",
 )
 - Official website for an emerging Zimbabwean technology company, built with a clean professional brand presentation.
 - Technologies: Next.js, GSAP, Framer Motion, and Supabase.
