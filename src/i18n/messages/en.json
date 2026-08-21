@@ -135,6 +135,7 @@
       "comment": "Comment",
       "comments": "Comments",
       "dashboard": "Dashboard",
+      "cv": "My CV",
       "email": "Email",
       "facebook": "Facebook",
       "general": "General",
@@ -160,6 +161,9 @@
     "sign-out": "Sign out",
     "unknown": "Unknown",
     "views": "{count, plural, =1 {# view} other {# views}}"
+  },
+  "cv": {
+    "description": "A detailed, ATS-friendly CV for Charless Netumbare, Full Stack Developer and AI Engineer from Masvingo, Zimbabwe."
   },
   "components": {
     "filtered-posts": {

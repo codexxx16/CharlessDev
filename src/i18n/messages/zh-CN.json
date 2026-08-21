@@ -135,6 +135,8 @@
       "comment": "评论",
       "comments": "评论",
       "dashboard": "仪表板",
+      "cv": "我的CV",
+      "email": "邮箱",
       "facebook": "Facebook",
       "general": "一般",
       "github": "GitHub",
@@ -159,6 +161,9 @@
     "sign-out": "登出",
     "unknown": "未知",
     "views": "{count, plural, =1 {# 浏览次数} other {# 浏览次数}}"
+  },
+  "cv": {
+    "description": "来自津巴布韦 Masvingo 的全栈开发者和 AI 工程师 Charless Netumbare 的详细 ATS 友好型 CV。"
   },
   "components": {
     "filtered-posts": {

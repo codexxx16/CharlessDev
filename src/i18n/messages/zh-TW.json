@@ -135,6 +135,8 @@
       "comment": "評論",
       "comments": "評論",
       "dashboard": "儀表板",
+      "cv": "我的CV",
+      "email": "電子郵件",
       "facebook": "Facebook",
       "general": "一般",
       "github": "GitHub",
@@ -159,6 +161,9 @@
     "sign-out": "登出",
     "unknown": "未知",
     "views": "{count, plural, =1 {# 瀏覽次數} other {# 瀏覽次數}}"
+  },
+  "cv": {
+    "description": "來自辛巴威 Masvingo 的全端開發者兼 AI 工程師 Charless Netumbare 的詳細 ATS 友善型 CV。"
   },
   "components": {
     "filtered-posts": {

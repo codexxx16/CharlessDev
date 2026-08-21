@@ -135,6 +135,8 @@
       "comment": "コメント",
       "comments": "コメント",
       "dashboard": "ダッシュボード",
+      "cv": "私のCV",
+      "email": "メールアドレス",
       "facebook": "Facebook",
       "general": "一般",
       "github": "GitHub",
@@ -159,6 +161,9 @@
     "sign-out": "サインアウト",
     "unknown": "不明",
     "views": "{count, plural, =1 {# 回閲覧} other {# 回閲覧}}"
+  },
+  "cv": {
+    "description": "マシンゴ・ジンバブエ出身のフルスタック開発者兼AIエンジニア、Charless Netumbareの詳細なATS対応CVです。"
   },
   "components": {
     "filtered-posts": {

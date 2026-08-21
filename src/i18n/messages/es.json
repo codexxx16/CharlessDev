@@ -135,6 +135,8 @@
       "comment": "Comentario",
       "comments": "Comentarios",
       "dashboard": "Panel",
+      "cv": "Mi CV",
+      "email": "Correo electrónico",
       "facebook": "Facebook",
       "general": "General",
       "github": "GitHub",
@@ -159,6 +161,9 @@
     "sign-out": "Cerrar sesión",
     "unknown": "Desconocido",
     "views": "{count, plural, =1 {# vista} other {# vistas}}"
+  },
+  "cv": {
+    "description": "CV detallado y compatible con sistemas ATS de Charless Netumbare, desarrollador Full Stack e ingeniero de IA de Masvingo, Zimbabue."
   },
   "components": {
     "filtered-posts": {
