@@ -1,34 +1,34 @@
-import type { NextRequest } from 'next/server'
+import type { NextRequest } from "next/server";
 
-import { IS_PRODUCTION } from '@/constants/common'
-import { env } from '@/env'
-import { i18nMiddleware } from '@/i18n/middleware'
+import { IS_PRODUCTION } from "@/constants/common";
+import { env } from "@/env";
+import { i18nMiddleware } from "@/i18n/middleware";
 
-const IS_PREVIEW = env.VERCEL_ENV === 'preview'
+const IS_PREVIEW = env.VERCEL_ENV === "preview";
 
 export function proxy(request: NextRequest) {
   const csp = `
     default-src 'none';
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.charlessdev.vercel.app https://*.posthog.com https://va.vercel-scripts.com ${IS_PREVIEW ? 'https://vercel.live' : ''};
-    style-src 'self' 'unsafe-inline' https://*.posthog.com ${IS_PREVIEW ? 'https://vercel.live' : ''};
-    img-src 'self' data: https://avatars.githubusercontent.com https://*.googleusercontent.com https://*.posthog.com https://github.com https://images.unsplash.com ${env.CLOUDFLARE_R2_PUBLIC_URL} ${IS_PREVIEW ? 'https://vercel.live https://vercel.com blob:' : ''};
-    font-src 'self' https://*.posthog.com ${IS_PREVIEW ? 'https://vercel.live https://assets.vercel.com' : ''};
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.charlessdev.vercel.app https://*.posthog.com https://va.vercel-scripts.com ${IS_PREVIEW ? "https://vercel.live" : ""};
+    style-src 'self' 'unsafe-inline' https://*.posthog.com ${IS_PREVIEW ? "https://vercel.live" : ""};
+    img-src 'self' data: https://avatars.githubusercontent.com https://*.googleusercontent.com https://*.posthog.com https://github.com https://images.unsplash.com ${env.CLOUDFLARE_R2_PUBLIC_URL} ${IS_PREVIEW ? "https://vercel.live https://vercel.com blob:" : ""};
+    font-src 'self' https://*.posthog.com ${IS_PREVIEW ? "https://vercel.live https://assets.vercel.com" : ""};
     worker-src 'self' blob:;
     object-src 'none';
     base-uri 'none';
     form-action 'none';
-    connect-src 'self' https://*.charlessdev.vercel.app https://*.posthog.com ${env.CLOUDFLARE_R2_ENDPOINT} ${IS_PREVIEW ? 'https://vercel.live wss://ws-us3.pusher.com' : ''};
+    connect-src 'self' https://*.charlessdev.vercel.app https://*.posthog.com ${env.CLOUDFLARE_R2_ENDPOINT} ${IS_PREVIEW ? "https://vercel.live wss://ws-us3.pusher.com" : ""};
     media-src 'self' https://*.posthog.com;
     manifest-src 'self';
-    frame-ancestors 'self' https://*.posthog.com ${IS_PRODUCTION ? '' : 'http://localhost:3002'};
-    ${IS_PREVIEW ? 'frame-src https://vercel.live;' : ''}
-  `
+    frame-ancestors 'self' https://*.posthog.com ${IS_PRODUCTION ? "" : "http://localhost:3002"};
+    ${IS_PREVIEW ? "frame-src https://vercel.live;" : ""}
+  `;
 
-  const response = i18nMiddleware(request)
+  const response = i18nMiddleware(request);
 
-  response.headers.set('Content-Security-Policy', csp.replaceAll('\n', ''))
+  response.headers.set("Content-Security-Policy", csp.replaceAll("\n", ""));
 
-  return response
+  return response;
 }
 
 export const config = {
@@ -45,7 +45,8 @@ export const config = {
   // - sitemap.xml
   // - robots.txt
   // - site.webmanifest
+  // - documents (downloadable public files)
   matcher: [
-    '/((?!api|cosmos|rpc|_next/static|_next/image|_vercel|_ph|favicon|android-chrome|apple-touch-icon|fonts|images|videos|favicon.ico|sitemap.xml|robots.txt|site.webmanifest).*)',
+    "/((?!api|cosmos|rpc|_next/static|_next/image|_vercel|_ph|favicon|android-chrome|apple-touch-icon|fonts|images|videos|documents|favicon.ico|sitemap.xml|robots.txt|site.webmanifest).*)",
   ],
-}
+};
